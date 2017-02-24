@@ -5,22 +5,24 @@ namespace Algorithms.HackerRank
 {
     public class KnightOnChessboard
     {
+        //Problem descritption: https://www.hackerrank.com/contests/rookierank-2/challenges/knightl-on-chessboard
+
         private Dictionary<Tuple<int, int>, int> Solutions { get; } = new Dictionary<Tuple<int, int>, int>();
 
         public void Solve(int n)
         {
             var nMinus = n - 1;
-            for (int i = 0; i < n; i++)
+            for (int i = 1; i < n; i++)
             {
                 var answer = "";
 
-                for (int j = 0; j < n; j++)
+                for (int j = 1; j < n; j++)
                 {
                     int moves;
 
                     if (i > j)
                     {
-                        var tuple = new Tuple<int, int>(i, j);
+                        var tuple = new Tuple<int, int>(j, i);
                         answer += Solutions[tuple] + " ";
                     }
                     else if (i == j)
@@ -30,8 +32,8 @@ namespace Algorithms.HackerRank
                     }
                     else
                     {
-                        var graph = new GraphKnight(nMinus);
-                        moves = graph.FindShortestPath(i, j);
+                        var graph = new GraphKnight(nMinus, i, j);
+                        moves = graph.FindShortestPath();
                         answer += moves + " ";
                         Solutions.Add(new Tuple<int, int>(i, j), moves);
                     }
@@ -44,39 +46,41 @@ namespace Algorithms.HackerRank
 
     public class NodeMove
     {
+        public bool IsNodeVisited { get; set; }
+        public Tuple<int, int> Id { get; set; }
+        public List<NodeMove> Parents { get; set; } = new List<NodeMove>();
+
         public NodeMove(Tuple<int, int> tuple)
         {
             Id = tuple;
         }
-
-        public Tuple<int, int> Id { get; set; }
-
-        public List<NodeMove> Children { get; set; } = new List<NodeMove>();
-
-        public List<NodeMove> Parents { get; set; } = new List<NodeMove>();
     }
 
     public class GraphKnight
     {
-
-        private int NMinus { get; set; }
-
-        public bool IsCornerVisited { get; set; }
-
+        private bool IsCornerVisited { get; set; }
+        private int NMinus { get; }
+        private int KnightRangeA { get; }
+        private int KnightRangeB { get; }
         private Dictionary<Tuple<int, int>, NodeMove> Graph { get; } = new Dictionary<Tuple<int, int>, NodeMove>();
-
         private NodeMove Endpoint { get; set; }
-
         private NodeMove Root { get; } = new NodeMove(new Tuple<int, int>(0, 0));
 
-        public GraphKnight(int nMinus)
+        public GraphKnight(int nMinus, int a, int b)
         {
             NMinus = nMinus;
+            KnightRangeA = a;
+            KnightRangeB = b;
         }
 
-        public int FindShortestPath(int x, int y)
+        public int FindShortestPath()
         {
-            TraceAllMoves(x, y);
+            var initialMoves = GetInitialMoves();
+
+            foreach (var initialMove in initialMoves)
+            {
+                TraceAllMoves(initialMove, Root);
+            }
 
             if (!IsCornerVisited)
             {
@@ -89,60 +93,95 @@ namespace Algorithms.HackerRank
             return FindRoot(nodes, count);
         }
 
+        private List<NodeMove> GetInitialMoves()
+        {
+            var moves = new List<NodeMove>();
+            var tuplesMoves = GetPossibleMoves(Root);
+            foreach (var newPosition in tuplesMoves)
+            {
+                var newNode = new NodeMove(newPosition);
+                AddNode(Root, newNode, newPosition);
+                moves.Add(newNode);
+            }
+
+            return moves;
+        }
+
         private int FindRoot(List<NodeMove> nodes, int count)
         {
-            var parents = new List<NodeMove>();
-            foreach (var node in nodes)
+            while (true)
             {
-                if (node == Root)
+                var parents = new List<NodeMove>();
+                foreach (var node in nodes)
                 {
-                    return count;
+                    if (node == Root)
+                    {
+                        return count;
+                    }
+
+                    if (!node.IsNodeVisited)
+                    {
+                        parents.AddRange(node.Parents);
+                        node.IsNodeVisited = true;
+                    }
                 }
-                parents.AddRange(node.Parents);
+                count++;
+                nodes = parents;
             }
-            count++;
-            return FindRoot(parents, count);
         }
 
-        private void TraceAllMoves(int x, int y)
+        private void TraceAllMoves(NodeMove currentPosition, NodeMove previousPosition)
         {
-            var tuplesMoves = GetPossibleMoves(Root, x, y);
+            var previousCoordinates = new Tuple<int, int>(previousPosition.Id.Item1, previousPosition.Id.Item2);
+            var tuplesMoves = GetPossibleMoves(currentPosition);
 
+            tuplesMoves.RemoveWhere(x => x.Equals(previousCoordinates));
+
+            foreach (var newPosition in tuplesMoves)
+            {
+                var nodeToAdd = new NodeMove(newPosition);
+
+                if (AddNode(currentPosition, nodeToAdd, newPosition))
+                {
+                    TraceAllMoves(nodeToAdd, currentPosition);
+                }
+            }
         }
 
-        private List<Tuple<int, int>> GetPossibleMoves(NodeMove node, int a, int b)
+        private HashSet<Tuple<int, int>> GetPossibleMoves(NodeMove node)
         {
-            var possibleMoves = new List<Tuple<int, int>>();
+            var possibleMoves = new HashSet<Tuple<int, int>>();
+
             var x1 = node.Id.Item1;
             var y1 = node.Id.Item2;
 
-            if (x1 + a <= NMinus)
+            if (x1 + KnightRangeA <= NMinus)
             {
-                if (y1 + b <= NMinus)
+                if (y1 + KnightRangeB <= NMinus)
                 {
-                    possibleMoves.Add(new Tuple<int, int>(x1 + a, y1 + b));
-                    possibleMoves.Add(new Tuple<int, int>(y1 + b, x1 + a));
+                    possibleMoves.Add(new Tuple<int, int>(x1 + KnightRangeA, y1 + KnightRangeB));
+                    possibleMoves.Add(new Tuple<int, int>(y1 + KnightRangeB, x1 + KnightRangeA));
                 }
 
-                if (y1 - b >= 0)
+                if (y1 - KnightRangeB >= 0)
                 {
-                    possibleMoves.Add(new Tuple<int, int>(x1 + a, y1 - b));
-                    possibleMoves.Add(new Tuple<int, int>(y1 - b, x1 + a));
+                    possibleMoves.Add(new Tuple<int, int>(x1 + KnightRangeA, y1 - KnightRangeB));
+                    possibleMoves.Add(new Tuple<int, int>(y1 - KnightRangeB, x1 + KnightRangeA));
                 }
             }
 
-            if (x1 - a >= 0)
+            if (x1 - KnightRangeA >= 0)
             {
-                if (y1 + b <= NMinus)
+                if (y1 + KnightRangeB <= NMinus)
                 {
-                    possibleMoves.Add(new Tuple<int, int>(x1 - a, y1 + b));
-                    possibleMoves.Add(new Tuple<int, int>(y1 + b, x1 - a));
+                    possibleMoves.Add(new Tuple<int, int>(x1 - KnightRangeA, y1 + KnightRangeB));
+                    possibleMoves.Add(new Tuple<int, int>(y1 + KnightRangeB, x1 - KnightRangeA));
                 }
 
-                if (y1 - b >= 0)
+                if (y1 - KnightRangeB >= 0)
                 {
-                    possibleMoves.Add(new Tuple<int, int>(x1 - a, y1 - b));
-                    possibleMoves.Add(new Tuple<int, int>(y1 - b, x1 - a));
+                    possibleMoves.Add(new Tuple<int, int>(x1 - KnightRangeA, y1 - KnightRangeB));
+                    possibleMoves.Add(new Tuple<int, int>(y1 - KnightRangeB, x1 - KnightRangeA));
                 }
             }
 
@@ -153,12 +192,15 @@ namespace Algorithms.HackerRank
         {
             if (Graph.ContainsKey(coordinates))
             {
-                Graph[coordinates].Parents.Add(parentNode);
+                var existingNode = Graph[coordinates];
+                parentNode.Parents.Add(existingNode);
+                existingNode.Parents.Add(parentNode);
+
                 return false;
             }
 
-            //var newNode = new NodeMove(x, y);
-            //newNode.Parents.Add(parentNode);
+            nodeToAdd.Parents.Add(parentNode);
+            parentNode.Parents.Add(nodeToAdd);
             Graph.Add(coordinates, nodeToAdd);
 
             if (coordinates.Item1 == coordinates.Item2 && coordinates.Item2 == NMinus)

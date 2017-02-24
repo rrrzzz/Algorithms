@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Algorithms.HackerRank;
 
 namespace Algorithms
 {
@@ -10,6 +6,8 @@ namespace Algorithms
     {
         static void Main(string[] args)
         {
+            var knight = new KnightOnChessboard();
+            knight.Solve(11);
         }
     }
 }

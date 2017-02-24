@@ -5,7 +5,7 @@ namespace Algorithms.HackerRank
 {
     public class KnightOnChessboard
     {
-        //Problem descritption: https://www.hackerrank.com/contests/rookierank-2/challenges/knightl-on-chessboard
+        //Problem description: https://www.hackerrank.com/contests/rookierank-2/challenges/knightl-on-chessboard
 
         private Dictionary<Tuple<int, int>, int> Solutions { get; } = new Dictionary<Tuple<int, int>, int>();
 

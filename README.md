@@ -1,2 +1,2 @@
 # Algorithms
-Teaching myself algorithms with the help of hackerrank and Corman book on algos.
+Teaching myself algorithms with the help of hackerrank and Cormen book on algos.

@@ -1,4 +1,4 @@
-﻿using Algorithms.HackerRank;
+﻿using Algorithms.Stepik;
 
 namespace Algorithms
 {
@@ -6,8 +6,8 @@ namespace Algorithms
     {
         static void Main(string[] args)
         {
-            var knight = new KnightOnChessboard();
-            knight.Solve(11);
+            var solver = new Gcd();
+            solver.GdcEuclid();
         }
     }
 }

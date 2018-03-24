@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,8 +52,7 @@
     <Compile Include="HackerRank\TheLuckyNumberEight.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Stepik\Fib.cs" />
-    <Compile Include="Stepik\GCD.cs" />
+    <Compile Include="Stanford\SortingClassics.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

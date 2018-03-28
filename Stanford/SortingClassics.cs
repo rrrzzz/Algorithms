@@ -60,6 +60,65 @@ namespace Algorithms.Stanford
             return sorted;
         }
 
+        public int[] MergeSortEffective(int[] toSort)
+        {
+            var array = (int[])toSort.Clone();
+            DivideAndSort(0, array.Length - 1, array);
+            return array;
+        }
+
+        private void DivideAndSort(int l, int r, int[] toSort)
+        {
+            if (l < r)
+            {
+                var m = (l + r) / 2;
+
+                DivideAndSort(l, m, toSort);
+                DivideAndSort(m + 1, r, toSort);
+                MergeNew(l, m, r, toSort);
+            }
+        }
+
+        private void MergeNew(int l, int m, int r, int[] toSort)
+        {
+            var arrL = new int[m - l + 1];
+            var arrR = new int[r - m];
+
+            for (int i = 0; i < arrL.Length; i++)
+            {
+                arrL[i] = toSort[i + l];
+            }
+
+            for (int i = 0; i < arrR.Length; i++)
+            {
+                arrR[i] = toSort[m + 1 + i];
+            }
+
+            int leftIndex = 0, rightIndex = 0;
+
+            while(leftIndex < arrL.Length && rightIndex < arrR.Length)
+            {
+                if (arrL[leftIndex] < arrR[rightIndex])
+                {
+                    toSort[l++] = arrL[leftIndex++];
+                }
+                else
+                {
+                    toSort[l++] = arrR[rightIndex++];
+                }
+            }
+
+            while (leftIndex < arrL.Length)
+            {
+                toSort[l++] = arrL[leftIndex++];
+            }
+
+            while (rightIndex < arrR.Length)
+            {
+                toSort[l++] = arrR[rightIndex++];
+            }
+        }
+
         public List<int> InsertionSort(List<int> toSort)
         {
             var newList = toSort.ConvertAll(x => x);
@@ -70,21 +129,11 @@ namespace Algorithms.Stanford
                 var currentElement = newList[i];
                 while (indexCompare != -1 && currentElement < newList[indexCompare])
                 {
+                    newList[indexCompare + 1] = newList[indexCompare];
                     indexCompare--;
                 }
 
-                var indexToInsert = indexCompare + 1;
-                if (indexToInsert == i) continue;
-                
-                var temp = newList[indexToInsert];
-                newList[indexToInsert] = newList[i];
-
-                for (int j = indexToInsert + 1; j <= i; j++)
-                {
-                    var newTemp = newList[j];
-                    newList[j] = temp;
-                    temp = newTemp;
-                }
+                newList[indexCompare + 1] = currentElement;
             }
 
             return newList;

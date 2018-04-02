@@ -9,12 +9,12 @@ namespace Algorithms
     {
         static void Main(string[] args)
         {
-            var solver = new SortingClassics();
+            var solver = new InversionCounter();
 
-            var ls = new List<int> {1, 1, 3, 5, 6, 2, 4, 8, 7};
-            var sorted = solver.MergeSort(ls);
+            var arr = new[] {1, 3, 5, 6, 2, 4, 8, 7};
+            var count = solver.CountInversions(arr);
 
-            Console.WriteLine(String.Join(", ", sorted));
+            Console.WriteLine(count);
             Console.ReadLine();
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Algorithms.Corman.HeapStructure;
 
 namespace Algorithms.Corman
 {
@@ -29,6 +30,18 @@ namespace Algorithms.Corman
 
             Console.WriteLine(string.Join(", ", ints));
             Console.ReadLine();
+        }
+
+        public static void HeapSort(int[] arrayToSort)
+        {
+            var heap = new Heap(arrayToSort);
+            heap.BuildHeap();
+            
+            while (heap.HeapSize > 1)
+            {
+                heap.SwapValues(1, heap.HeapSize--);
+                heap.MaxHeapify(1);
+            }
         }
     }
 }

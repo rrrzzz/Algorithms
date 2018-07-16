@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Corman\FindMaxSubArray.cs" />
+    <Compile Include="Corman\HeapStructure\Heap.cs" />
     <Compile Include="Corman\Sorting.cs" />
     <Compile Include="HackerRank\EvenTree.cs" />
     <Compile Include="HackerRank\KnightOnChessboard.cs" />

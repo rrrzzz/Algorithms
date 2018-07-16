@@ -1,8 +1,10 @@
-﻿namespace Algorithms.Stanford
+﻿using System.Numerics;
+
+namespace Algorithms.Stanford
 {
     class InversionCounter
     {
-        public int CountInversions(int[] arrayToCount)
+        public BigInteger CountInversions(int[] arrayToCount)
         {
             if (arrayToCount.Length < 2)
             {
@@ -14,7 +16,7 @@
             return MergeSortAndCountInversions(0, copy.Length - 1, copy);
         }
 
-        private int MergeSortAndCountInversions(int l, int r, int[] arr)
+        private BigInteger MergeSortAndCountInversions(int l, int r, int[] arr)
         {
             if (l < r)
             {

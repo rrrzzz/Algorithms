@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Threading;
-using Algorithms.Stanford;
+using System.Linq;
+using Algorithms.Corman;
+using Algorithms.Corman.HeapStructure;
 
 namespace Algorithms
 {
@@ -9,12 +9,11 @@ namespace Algorithms
     {
         static void Main(string[] args)
         {
-            var solver = new InversionCounter();
+            var array = new[] {-999, 1, 3, 2, 4, 7, 9, 8, 10, 14, 16};
+            var arraySkewed = new[] {-999, 16, 4, 10, 14, 7, 9, 3, 2, 8, 1 };
 
-            var arr = new[] {1, 3, 5, 6, 2, 4, 8, 7};
-            var count = solver.CountInversions(arr);
-
-            Console.WriteLine(count);
+            Sorting.HeapSort(array);
+            array.ToList().ForEach(Console.WriteLine);
             Console.ReadLine();
         }
     }

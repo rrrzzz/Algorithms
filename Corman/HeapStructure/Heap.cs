@@ -2,16 +2,20 @@
 {
     public class Heap
     {
-        public int[] HeapArray { get; set; }
+        private int[] HeapArray { get; }
         
         public int HeapSize { get; set; }
-
-        public Heap(){}
 
         public Heap(int[] array)
         {
             HeapArray = array;
             HeapSize = array.Length - 1;
+        }
+
+        public int this[int index]
+        {
+            get => HeapArray[index];
+            set => HeapArray[index] = value;
         }
 
         public int GetParentIndex(int index)
@@ -38,12 +42,12 @@
                 var leftChildIndex = GetLeftChildIndex(parentIndex);
                 var rightChildIndex = GetRightChildIndex(parentIndex);
 
-                if (leftChildIndex <= HeapSize && HeapArray[leftChildIndex] > HeapArray[largestIndex])
+                if (leftChildIndex <= HeapSize && this[leftChildIndex] > this[largestIndex])
                 {
                     largestIndex = leftChildIndex;
                 }
 
-                if (rightChildIndex <= HeapSize && HeapArray[rightChildIndex] > HeapArray[largestIndex])
+                if (rightChildIndex <= HeapSize && this[rightChildIndex] > this[largestIndex])
                 {
                     largestIndex = rightChildIndex;
                 }
@@ -72,9 +76,9 @@
 
         public void SwapValues(int firstIndex, int secondIndex)
         {
-            var temp = HeapArray[firstIndex];
-            HeapArray[firstIndex] = HeapArray[secondIndex];
-            HeapArray[secondIndex] = temp;
+            var temp = this[firstIndex];
+            this[firstIndex] = this[secondIndex];
+            this[secondIndex] = temp;
         }
     }
 }

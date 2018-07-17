@@ -2,20 +2,20 @@
 {
     public class Heap
     {
-        private int[] HeapArray { get; }
+        private readonly int[] _heapArray;
         
         public int HeapSize { get; set; }
 
         public Heap(int[] array)
         {
-            HeapArray = array;
-            HeapSize = array.Length - 1;
+            _heapArray = array;
+            HeapSize = array.Length;
         }
 
         public int this[int index]
         {
-            get => HeapArray[index];
-            set => HeapArray[index] = value;
+            get => _heapArray[index - 1];
+            set => _heapArray[index - 1] = value;
         }
 
         public int GetParentIndex(int index)

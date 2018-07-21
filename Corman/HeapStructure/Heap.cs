@@ -1,4 +1,7 @@
-﻿namespace Algorithms.Corman.HeapStructure
+﻿using System;
+using Algorithms;
+
+namespace Algorithms.Corman.HeapStructure
 {
     public class Heap
     {
@@ -54,7 +57,7 @@
 
                 if (largestIndex != parentIndex)
                 {
-                    SwapValues(parentIndex, largestIndex);
+                    SwapHeapValues(parentIndex, largestIndex);
                     parentIndex = largestIndex;
                 }
                 else
@@ -74,7 +77,7 @@
             }
         }
 
-        public void SwapValues(int firstIndex, int secondIndex)
+        public void SwapHeapValues(int firstIndex, int secondIndex)
         {
             var temp = this[firstIndex];
             this[firstIndex] = this[secondIndex];

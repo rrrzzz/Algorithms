@@ -4,9 +4,9 @@ using Algorithms.Corman.HeapStructure;
 
 namespace Algorithms.Corman
 {
-    public static class Sorting
+    public class Sorting
     {
-        public static void SelectionSort(List<int> ints)
+        public void SelectionSort(List<int> ints)
         {
             var length = ints.Count;
             for (int i = 0; i < length - 1; i++)
@@ -32,16 +32,54 @@ namespace Algorithms.Corman
             Console.ReadLine();
         }
 
-        public static void HeapSort(int[] arrayToSort)
+        public void HeapSort(int[] arrayToSort)
         {
             var heap = new Heap(arrayToSort);
             heap.BuildHeap();
             
             while (heap.HeapSize > 1)
             {
-                heap.SwapValues(1, heap.HeapSize--);
+                heap.SwapHeapValues(1, heap.HeapSize--);
                 heap.MaxHeapify(1);
             }
+        }
+
+        public void Quicksort(int[] arrayToSort)
+        {
+            var startIndex = 0;
+            var endIndex = arrayToSort.Length - 1;
+
+            QuicksortRecursive(arrayToSort, startIndex, endIndex);
+        }
+
+        private void QuicksortRecursive(int[] arrayToSort, int startIndex, int endIndex)
+        {
+            if (startIndex < endIndex)
+            {
+                var pivotIndex = Partition(arrayToSort, startIndex, endIndex);
+                QuicksortRecursive(arrayToSort, startIndex, pivotIndex - 1);
+                QuicksortRecursive(arrayToSort, pivotIndex + 1, endIndex);
+
+            }
+        }
+
+        private int Partition(int[] arrayToSort, int startIndex, int endIndex)
+        {
+            var pivotIndex = endIndex;
+            var pivotValue = arrayToSort[pivotIndex];
+            var smallerPartitionEndIndex = startIndex - 1;
+            for (int currentPosition = startIndex; currentPosition < pivotIndex; currentPosition++)
+            {
+                if (arrayToSort[currentPosition] <= pivotValue)
+                {
+                    UtilityMethods.SwapValues(arrayToSort, ++smallerPartitionEndIndex, currentPosition);
+                }
+            }
+
+            pivotIndex = smallerPartitionEndIndex + 1;
+            UtilityMethods.SwapValues(arrayToSort, pivotIndex, endIndex);
+
+            return pivotIndex;
         }
     }
 }

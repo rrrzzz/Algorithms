@@ -35,7 +35,7 @@ namespace Algorithms.Corman
         public void HeapSort(int[] arrayToSort)
         {
             var heap = new Heap(arrayToSort);
-            heap.BuildHeap();
+            heap.BuildMaxHeap();
             
             while (heap.HeapSize > 1)
             {
@@ -59,7 +59,6 @@ namespace Algorithms.Corman
                 var pivotIndex = Partition(arrayToSort, startIndex, endIndex);
                 QuicksortRecursive(arrayToSort, startIndex, pivotIndex - 1);
                 QuicksortRecursive(arrayToSort, pivotIndex + 1, endIndex);
-
             }
         }
 

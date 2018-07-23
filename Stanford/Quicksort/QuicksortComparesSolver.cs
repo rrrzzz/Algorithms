@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Linq;
 using System.Net;
+using Algorithms.Stanford.PivotPartition;
 
 namespace Algorithms.Stanford.Quicksort
 {
     public static class QuicksortComparesSolver
     {
+        // default: https://lagunita.stanford.edu/assets/courseware/v1/e4180be5ec3e5b00f55703423698327f/asset-v1:Engineering+Algorithms1+SelfPaced+type@asset+block/QuickSort.txt
         public static void Solve(string linkToArray)
         {
             var webArray = GetArrayFromWeb(linkToArray);

@@ -46,8 +46,11 @@
   <ItemGroup>
     <Compile Include="Corman\FindMaxSubArray.cs" />
     <Compile Include="Corman\HeapStructure\Heap.cs" />
+    <Compile Include="Corman\HeapStructure\PriorityQueue.cs" />
     <Compile Include="Corman\Sorting.cs" />
-    <Compile Include="Stanford\Quicksort\PivotSelect.cs" />
+    <Compile Include="Stanford\OrderStatistics.cs" />
+    <Compile Include="Stanford\PivotPartition\PivotPartitioner.cs" />
+    <Compile Include="Stanford\PivotPartition\PivotSelect.cs" />
     <Compile Include="Stanford\Quicksort\QuicksortComparesCounter.cs" />
     <Compile Include="Stanford\Quicksort\QuicksortComparesSolver.cs" />
     <Compile Include="UtilityMethods.cs" />

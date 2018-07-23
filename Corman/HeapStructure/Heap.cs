@@ -1,24 +1,21 @@
-﻿using System;
-using Algorithms;
-
-namespace Algorithms.Corman.HeapStructure
+﻿namespace Algorithms.Corman.HeapStructure
 {
     public class Heap
     {
-        private readonly int[] _heapArray;
+        protected int[] HeapArray;
         
         public int HeapSize { get; set; }
 
         public Heap(int[] array)
         {
-            _heapArray = array;
+            HeapArray = array;
             HeapSize = array.Length;
         }
 
         public int this[int index]
         {
-            get => _heapArray[index - 1];
-            set => _heapArray[index - 1] = value;
+            get => HeapArray[index - 1];
+            set => HeapArray[index - 1] = value;
         }
 
         public int GetParentIndex(int index)
@@ -67,7 +64,7 @@ namespace Algorithms.Corman.HeapStructure
             }
         }
 
-        public void BuildHeap()
+        public void BuildMaxHeap()
         {
             int arrayMiddle = HeapSize / 2;
 

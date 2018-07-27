@@ -10,6 +10,7 @@ namespace Algorithms.Stanford.GraphStructures
         private List<int[]> _edgesList;
         private readonly int _verticesCount;
         private readonly int[][] _graphArray;
+        private int _seed;
 
         public KargerMinCut(int[][] graphArray)
         {
@@ -52,35 +53,32 @@ namespace Algorithms.Stanford.GraphStructures
             return lowestCut;
         }
 
-        private int FindMinCutUnionOnce(Random generator)
+        public int FindMinCutKargerStein()
         {
-            var unionStructure = new UnionFind(_verticesCount);
-            var verticesCount = _verticesCount;
-
-            while (verticesCount > 2)
-            {
-                var randomEdge = _edgesList[generator.Next(_edgesList.Count)];
-
-                var firstRoot = unionStructure.FindRoot(randomEdge[0]);
-                var secondRoot = unionStructure.FindRoot(randomEdge[1]);
-
-                if (firstRoot == secondRoot) continue;
-
-                unionStructure.Union(firstRoot, secondRoot);
-                verticesCount--;
-            }
-
-            return CountCuts(_edgesList, unionStructure);
+            _edgesList = GraphGenerator.CreateEdgesList(_graphArray);
+            var graph = new UnionFind(_verticesCount);
+            
+            return FindMinCutKargerSteinRecursive(graph, _verticesCount);
         }
 
-        private int CountCuts(List<int[]> edgesList, UnionFind unionStructure)
+        private int FindMinCutUnionOnce(Random generator)
+        {
+            var graph = new UnionFind(_verticesCount);
+            var vertexLimit = 2;
+
+            ContractGraph(generator, graph, _verticesCount, vertexLimit);
+
+            return CountCuts(graph);
+        }
+
+        private int CountCuts(UnionFind graph)
         {
             var cutCount = 0;
 
-            foreach (var edge in edgesList)
+            foreach (var edge in _edgesList)
             {
-                var firstRoot = unionStructure.FindRoot(edge[0]);
-                var secondRoot = unionStructure.FindRoot(edge[1]);
+                var firstRoot = graph.FindRoot(edge[0]);
+                var secondRoot = graph.FindRoot(edge[1]);
 
                 if (firstRoot == secondRoot) continue;
                 cutCount++;
@@ -122,6 +120,50 @@ namespace Algorithms.Stanford.GraphStructures
             }
 
             return _adjacencyList[_adjacencyList.Keys.ElementAt(0)].Count;
+        }
+
+        private int FindMinCutKargerSteinRecursive(UnionFind graph, int verticesCount)
+        {
+            int vertexLimit;
+            var random = new Random(++_seed);
+            
+            if (verticesCount <= 6)
+            {
+                vertexLimit = 2;
+
+                ContractGraph(random, graph, verticesCount, vertexLimit);
+
+                return CountCuts(graph);
+            }
+
+            vertexLimit = (int) Math.Ceiling(1 + verticesCount / Math.Sqrt(2));
+
+            var graph1 = UtilityMethods.CopyUnionFind(graph);
+            var graph2 = UtilityMethods.CopyUnionFind(graph);
+
+            ContractGraph(new Random(++_seed), graph1, verticesCount, vertexLimit);
+            ContractGraph(new Random(++_seed), graph2, verticesCount, vertexLimit);
+
+            var firstMinCut = FindMinCutKargerSteinRecursive(graph1, vertexLimit);
+            var secondMinCut = FindMinCutKargerSteinRecursive(graph2, vertexLimit);
+
+            return secondMinCut < firstMinCut ? secondMinCut : firstMinCut;
+        }
+
+        private void ContractGraph(Random generator, UnionFind graph, int verticesCount, int vertexLimit)
+        {
+            while (verticesCount != vertexLimit)
+            {
+                var randomEdge = _edgesList[generator.Next(_edgesList.Count)];
+
+                var firstRoot = graph.FindRoot(randomEdge[0]);
+                var secondRoot = graph.FindRoot(randomEdge[1]);
+
+                if (firstRoot == secondRoot) continue;
+
+                graph.Union(firstRoot, secondRoot);
+                verticesCount--;
+            }
         }
     }
 }

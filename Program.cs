@@ -21,14 +21,10 @@ namespace Algorithms
                 new [] {8, 3, 4, 7}
             };
 
-            //var solver = new MinCutSolver("https://lagunita.stanford.edu/assets/courseware/v1/d81819849ab16ea07f97e4814a7f76d0/asset-v1:Engineering+Algorithms1+SelfPaced+type@asset+block/kargerMinCut.txt");
+            var solver = new MinCutSolver("https://lagunita.stanford.edu/assets/courseware/v1/d81819849ab16ea07f97e4814a7f76d0/asset-v1:Engineering+Algorithms1+SelfPaced+type@asset+block/kargerMinCut.txt");
 
-            var solver = new MinCutSolver(graphList);
-
-            Console.WriteLine(solver.FindMinCutByTrialsUnion());
+            Console.WriteLine(solver.FindMinCutByKargerStein());
             Console.ReadLine();
-
-            //graph.ParseGraphListFromWebSource("https://lagunita.stanford.edu/assets/courseware/v1/d81819849ab16ea07f97e4814a7f76d0/asset-v1:Engineering+Algorithms1+SelfPaced+type@asset+block/kargerMinCut.txt");
         }
     }
 }

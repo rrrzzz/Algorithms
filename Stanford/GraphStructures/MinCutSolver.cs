@@ -33,6 +33,12 @@ namespace Algorithms.Stanford.GraphStructures
             return minCut.FindMinCutUnion();
         }
 
+        public int FindMinCutByKargerStein()
+        {
+            var minCut = new KargerMinCut(_graphArray);
+            return minCut.FindMinCutKargerStein();
+        }
+
         private int[][] ParseGraphArrayFromWebSource(string link)
         {
             string graphStringTable;

@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace Algorithms.Stanford
+namespace Algorithms.Stanford.Sorting
 {
     class InversionCounter
     {

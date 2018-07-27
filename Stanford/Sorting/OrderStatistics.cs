@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Linq;
 using Algorithms.Stanford.PivotPartition;
+using Algorithms.Stanford.Sorting.PivotPartition;
 
-namespace Algorithms.Stanford
+namespace Algorithms.Stanford.Sorting
 {
     public class OrderStatistics : PivotPartitioner
     {

@@ -1,4 +1,4 @@
-﻿namespace Algorithms.Stanford.PivotPartition
+﻿namespace Algorithms.Stanford.Sorting.PivotPartition
 {
     public enum PivotSelect
     {

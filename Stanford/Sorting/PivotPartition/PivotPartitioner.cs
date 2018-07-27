@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using Algorithms.Stanford.Sorting.PivotPartition;
 
 namespace Algorithms.Stanford.PivotPartition
 {

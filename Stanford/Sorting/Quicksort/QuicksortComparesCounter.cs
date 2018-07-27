@@ -1,6 +1,7 @@
 ﻿using Algorithms.Stanford.PivotPartition;
+using Algorithms.Stanford.Sorting.PivotPartition;
 
-namespace Algorithms.Stanford.Quicksort
+namespace Algorithms.Stanford.Sorting.Quicksort
 {
     public class QuicksortComparesCounter : PivotPartitioner
     {

@@ -48,11 +48,15 @@
     <Compile Include="Corman\HeapStructure\Heap.cs" />
     <Compile Include="Corman\HeapStructure\PriorityQueue.cs" />
     <Compile Include="Corman\Sorting.cs" />
-    <Compile Include="Stanford\OrderStatistics.cs" />
-    <Compile Include="Stanford\PivotPartition\PivotPartitioner.cs" />
-    <Compile Include="Stanford\PivotPartition\PivotSelect.cs" />
-    <Compile Include="Stanford\Quicksort\QuicksortComparesCounter.cs" />
-    <Compile Include="Stanford\Quicksort\QuicksortComparesSolver.cs" />
+    <Compile Include="Stanford\GraphStructures\GraphGenerator.cs" />
+    <Compile Include="Stanford\GraphStructures\MinCutSolver.cs" />
+    <Compile Include="Stanford\Sorting\OrderStatistics.cs" />
+    <Compile Include="Stanford\Sorting\PivotPartition\PivotPartitioner.cs" />
+    <Compile Include="Stanford\Sorting\PivotPartition\PivotSelect.cs" />
+    <Compile Include="Stanford\Sorting\Quicksort\QuicksortComparesCounter.cs" />
+    <Compile Include="Stanford\Sorting\Quicksort\QuicksortComparesSolver.cs" />
+    <Compile Include="Stanford\GraphStructures\KargerMinCut.cs" />
+    <Compile Include="Stanford\UnionFind.cs" />
     <Compile Include="UtilityMethods.cs" />
     <Compile Include="HackerRank\EvenTree.cs" />
     <Compile Include="HackerRank\KnightOnChessboard.cs" />
@@ -60,8 +64,8 @@
     <Compile Include="HackerRank\TheLuckyNumberEight.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Stanford\InversionCounter.cs" />
-    <Compile Include="Stanford\SortingClassics.cs" />
+    <Compile Include="Stanford\Sorting\InversionCounter.cs" />
+    <Compile Include="Stanford\Sorting\SortingClassics.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

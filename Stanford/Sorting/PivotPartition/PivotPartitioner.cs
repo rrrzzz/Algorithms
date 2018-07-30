@@ -1,8 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
-using Algorithms.Stanford.Sorting.PivotPartition;
 
-namespace Algorithms.Stanford.PivotPartition
+namespace Algorithms.Stanford.Sorting.PivotPartition
 {
     public class PivotPartitioner
     {

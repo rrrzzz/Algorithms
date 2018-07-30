@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using Algorithms.Stanford.PivotPartition;
 using Algorithms.Stanford.Sorting.PivotPartition;
 
 namespace Algorithms.Stanford.Sorting

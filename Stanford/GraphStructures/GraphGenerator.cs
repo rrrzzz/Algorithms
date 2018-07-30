@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Algorithms.Stanford.GraphStructures
 {
@@ -13,13 +14,10 @@ namespace Algorithms.Stanford.GraphStructures
             foreach (var vertexArray in graphArray)
             {
                 var vertex = vertexArray[0] - 1;
+
                 for (int j = 1; j < vertexArray.Length; j++)
                 {
-                    var adjacentVertex = vertexArray[j] - 1;
-                    if (vertex > adjacentVertex) continue;
-
-                    adjacencyList[vertex].Add(adjacentVertex);
-                    adjacencyList[adjacentVertex].Add(vertex);
+                    adjacencyList[vertex].Add(vertexArray[j] - 1);
                 }
             }
 
@@ -45,11 +43,11 @@ namespace Algorithms.Stanford.GraphStructures
             return edgesList;
         }
 
-        private static void InitializeAdjacencyList(Dictionary<int, List<int>> adjacencyList, int vertexCount)
+        private static void InitializeAdjacencyList<T>(Dictionary<int, List<T>> adjacencyList, int vertexCount)
         {
             for (int i = 0; i < vertexCount; i++)
             {
-                adjacencyList.Add(i, new List<int>());
+                adjacencyList.Add(i, new List<T>());
             }
         }
     }

@@ -1,5 +1,4 @@
-﻿using Algorithms.Stanford.PivotPartition;
-using Algorithms.Stanford.Sorting.PivotPartition;
+﻿using Algorithms.Stanford.Sorting.PivotPartition;
 
 namespace Algorithms.Stanford.Sorting.Quicksort
 {

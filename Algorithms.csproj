@@ -49,6 +49,7 @@
     <Compile Include="Corman\HeapStructure\PriorityQueue.cs" />
     <Compile Include="Corman\Sorting.cs" />
     <Compile Include="Stanford\GraphStructures\GraphGenerator.cs" />
+    <Compile Include="Stanford\GraphStructures\KasarajuSccSolver.cs" />
     <Compile Include="Stanford\GraphStructures\MinCutSolver.cs" />
     <Compile Include="Stanford\Sorting\OrderStatistics.cs" />
     <Compile Include="Stanford\Sorting\PivotPartition\PivotPartitioner.cs" />
@@ -71,7 +72,16 @@
     <None Include="App.config" />
     <Compile Include="Stanford\GraphStructures\GraphSearch.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Stanford\TestInput\SCC.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Stanford\TestInput\SCC2.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

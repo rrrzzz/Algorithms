@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using System.IO;
+using System.Reflection;
 using Algorithms.Stanford;
 
 namespace Algorithms
@@ -25,6 +27,20 @@ namespace Algorithms
             input.Sizes.CopyTo(output.Sizes, 0);
 
             return output;
+        }
+
+        public static string GetEmbeddedResource(string resourceName, Assembly assembly)
+        {
+            using (Stream resourceStream = assembly.GetManifestResourceStream(resourceName))
+            {
+                if (resourceStream == null)
+                    return null;
+
+                using (StreamReader reader = new StreamReader(resourceStream))
+                {
+                    return reader.ReadToEnd();
+                }
+            }
         }
     }
 }

@@ -43,7 +43,7 @@ namespace Algorithms.Stanford.GraphStructures
             return edgesList;
         }
 
-        private static void InitializeAdjacencyList<T>(Dictionary<int, List<T>> adjacencyList, int vertexCount)
+        public static void InitializeAdjacencyList<T>(Dictionary<int, List<T>> adjacencyList, int vertexCount)
         {
             for (int i = 0; i < vertexCount; i++)
             {

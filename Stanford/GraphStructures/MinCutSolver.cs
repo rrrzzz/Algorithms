@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Linq;
 using System.Net;
 
@@ -24,7 +23,7 @@ namespace Algorithms.Stanford.GraphStructures
 
         public MinCutSolver(string link)
         {
-            _graphArray = ParseGraphArrayFromWebSource(link);
+            _graphArray = ParseGraphArrayStanfordWebSource(link);
         }
 
         public int FindMinCutByTrialsUnion()
@@ -45,7 +44,7 @@ namespace Algorithms.Stanford.GraphStructures
             return minCut.FindMinCutKargerStein();
         }
 
-        private int[][] ParseGraphArrayFromWebSource(string link)
+        private int[][] ParseGraphArrayStanfordWebSource(string link)
         {
             string graphStringTable;
             using (var webClinet = new WebClient())

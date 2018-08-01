@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
-using Algorithms.Stanford.GraphStructures;
+using Algorithms.Stanford.Graphs;
 
 namespace Algorithms
 {
@@ -30,7 +30,7 @@ namespace Algorithms
                 new [] {4}
             };
 
-            var answer = new KasarajuSccSolver().Solve();
+            var answer = new DijkstraSolver().Solve();
 
             Console.WriteLine("The answer is\n" + answer);
             Console.ReadLine();

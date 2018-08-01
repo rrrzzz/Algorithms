@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Algorithms.Stanford.GraphStructures
+namespace Algorithms.Stanford.Graphs
 {
     public class KargerMinCut
     {

@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace Algorithms.Stanford.GraphStructures
+namespace Algorithms.Stanford.Graphs
 {
     public static class GraphGenerator
     {

@@ -52,15 +52,10 @@
                     largestIndex = rightChildIndex;
                 }
 
-                if (largestIndex != parentIndex)
-                {
-                    SwapHeapValues(parentIndex, largestIndex);
-                    parentIndex = largestIndex;
-                }
-                else
-                {
-                    return;
-                }
+                if (largestIndex == parentIndex) return;
+                
+                SwapHeapValues(parentIndex, largestIndex);
+                parentIndex = largestIndex;
             }
         }
 

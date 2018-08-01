@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Net;
 
-namespace Algorithms.Stanford.GraphStructures
+namespace Algorithms.Stanford.Graphs
 {
     public class MinCutSolver
     {

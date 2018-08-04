@@ -8,7 +8,7 @@ namespace Algorithms.Stanford.Graphs
         public int[] GetShortestPaths(Dictionary<int,Node> graph, int startingVertex)
         {
             var visitedNodesCount = 0;
-            var closestUnvisitedNodesHeap = new MinHeap<Node>();
+            var closestUnvisitedNodes = new MinHeap<Node>();
             
             var pathLengths = new int[graph.Count + 1];
             var firstNode = graph[startingVertex];
@@ -24,24 +24,24 @@ namespace Algorithms.Stanford.Graphs
             {
                 var unvisitedHeadNodes = lastAddedNode.Neighbours.FindAll(x => !x.Item1.IsVisited);
 
-                foreach (var nodeTuple in unvisitedHeadNodes)
+                foreach (var nodeWeightTuple in unvisitedHeadNodes)
                 {
-                    var currentNode = nodeTuple.Item1;
-                    var pathLength = nodeTuple.Item2 + lastAddedNode.DijkstraScore;
+                    var currentNode = nodeWeightTuple.Item1;
+                    var pathLength = nodeWeightTuple.Item2 + lastAddedNode.DijkstraScore;
+                    var isNodeInHeap = currentNode.HeapIndex != 0;
 
-                    if (currentNode.HeapIndex != 0)
+                    if (isNodeInHeap)
                     {
-                        closestUnvisitedNodesHeap.DecreaseKey(currentNode.HeapIndex, pathLength);
+                        closestUnvisitedNodes.DecreaseKey(currentNode.HeapIndex, pathLength);
                     }
                     else
                     {
                         currentNode.DijkstraScore = pathLength;
-                        closestUnvisitedNodesHeap.InsertElement(currentNode);
+                        closestUnvisitedNodes.InsertElement(currentNode);
                     }
                 }
 
-                lastAddedNode = closestUnvisitedNodesHeap.ExtractMinElement();
-                lastAddedNode.HeapIndex = 0;
+                lastAddedNode = closestUnvisitedNodes.ExtractMinElement();
                 lastAddedNode.Visit();
                 pathLengths[lastAddedNode.Id] = lastAddedNode.DijkstraScore;
                 visitedNodesCount++;

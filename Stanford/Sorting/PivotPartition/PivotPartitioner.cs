@@ -67,9 +67,9 @@ namespace Algorithms.Stanford.Sorting.PivotPartition
             var middle = Array[middleIndex];
             var end = Array[endIndex];
 
-            int x = start - middle;
-            int y = middle - end;
-            int z = start - end;
+            var x = start - middle;
+            var y = middle - end;
+            var z = start - end;
 
             if (x * y > 0) return middleIndex;
             if (x * z > 0) return endIndex;

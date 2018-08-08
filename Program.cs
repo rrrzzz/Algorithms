@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Diagnostics;
-using Algorithms.Stanford.Graphs;
+using Algorithms.Stanford.ProgrammingAssignments;
 
 namespace Algorithms
 {
@@ -30,9 +29,9 @@ namespace Algorithms
                 new [] {4}
             };
 
-            var answer = new DijkstraSolver().Solve();
+            
 
-            Console.WriteLine("The answer is\n" + answer);
+            Console.WriteLine(Solver2Sum.SolveTwoPointers());
             Console.ReadLine();
         }
     }

@@ -48,7 +48,7 @@ namespace Algorithms.Stanford.DataStructures
                 return;
             }
 
-            var nodeObject = this[index];
+            var heapObject = this[index];
             var parent = GetParent(index);
 
             while (index > 1 && this[parent].GetKey() > newKey)
@@ -59,7 +59,7 @@ namespace Algorithms.Stanford.DataStructures
                 parent = GetParent(index);
             }
 
-            this[index] = nodeObject;
+            this[index] = heapObject;
             this[index].SetKey(newKey);
             this[index].HeapIndex = index;
         }

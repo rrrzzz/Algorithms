@@ -48,14 +48,17 @@
     <Compile Include="Corman\HeapStructure\Heap.cs" />
     <Compile Include="Corman\HeapStructure\PriorityQueue.cs" />
     <Compile Include="Corman\Sorting.cs" />
+    <Compile Include="Stanford\DataStructures\HeapBase.cs" />
     <Compile Include="Stanford\DataStructures\IHeapIndexable.cs" />
     <Compile Include="Stanford\DataStructures\MinHeap.cs" />
     <Compile Include="Stanford\Graphs\DijkstraShortestPath.cs" />
-    <Compile Include="Stanford\Graphs\DijkstraSolver.cs" />
+    <Compile Include="Stanford\ProgrammingAssignments\DijkstraSolver.cs" />
     <Compile Include="Stanford\Graphs\GraphGenerator.cs" />
-    <Compile Include="Stanford\Graphs\KasarajuSccSolver.cs" />
-    <Compile Include="Stanford\Graphs\MinCutSolver.cs" />
+    <Compile Include="Stanford\ProgrammingAssignments\KasarajuSccSolver.cs" />
+    <Compile Include="Stanford\ProgrammingAssignments\MedianMaintenance.cs" />
+    <Compile Include="Stanford\ProgrammingAssignments\MinCutSolver.cs" />
     <Compile Include="Stanford\Graphs\Node.cs" />
+    <Compile Include="Stanford\ProgrammingAssignments\Solver2Sum.cs" />
     <Compile Include="Stanford\Sorting\OrderStatistics.cs" />
     <Compile Include="Stanford\Sorting\PivotPartition\PivotPartitioner.cs" />
     <Compile Include="Stanford\Sorting\PivotPartition\PivotSelect.cs" />
@@ -79,6 +82,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Stanford\TestInput\SCC.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Stanford\TestInput\2sum.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>

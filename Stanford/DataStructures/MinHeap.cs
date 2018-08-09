@@ -1,144 +1,86 @@
-﻿using System;
-
-namespace Algorithms.Stanford.DataStructures
+﻿namespace Algorithms.Stanford.DataStructures
 {
-    public class MinHeap<T> where T : class, IHeapIndexable
+    public class MinHeap : HeapBase<int>
     {
-        private int _heapSize;
+        public MinHeap(){}
 
-        private T[] _minHeap;
-
-        public T this[int index]
+        public MinHeap(int[] heap) : base(heap)
         {
-            get => _minHeap[index - 1];
-            set => _minHeap[index - 1] = value;
-        }
-
-        public MinHeap()
-        {
-            _minHeap = new T[0];
-        }
-
-        public MinHeap(T[] heap)
-        {
-            _minHeap = heap;
-            _heapSize = _minHeap.Length;
             BuildMinHeap();
         }
 
-        public T GetMinElement()
+        public int GetMinElement()
         {
             return this[1];
         }
 
-        public T ExtractMinElement()
+        public int ExtractMinElement()
         {
-            var output = GetMinElement();
+            var output = this[1];
 
-            this[1] = this[_heapSize--];
+            this[1] = this[HeapSize--];
+
             MinHeapify(1);
 
             return output;
         }
-
-        public void DecreaseKey(int index, int newKey)
+        
+        public void InsertElement(int value)
         {
-            if (this[index].GetKey() <= newKey)
+            HeapSize++;
+            if (HeapArray.Length < HeapSize) ResizeHeapArray();
+
+            this[HeapSize] = value + 1;
+
+            DecreaseKey(HeapSize, value);
+        }
+
+        public void DecreaseKey(int index, int value)
+        {
+            if (this[index] <= value) return;
+
+            var parentIndex = GetParent(index);
+
+            while (index > 1 && this[parentIndex] > value)
             {
-                return;
+                this[index] = this[parentIndex];
+                index = parentIndex;
+                parentIndex = GetParent(index);
             }
 
-            var heapObject = this[index];
-            var parent = GetParent(index);
-
-            while (index > 1 && this[parent].GetKey() > newKey)
-            {
-                this[index] = this[parent];
-                this[index].HeapIndex = index;
-                index = parent;
-                parent = GetParent(index);
-            }
-
-            this[index] = heapObject;
-            this[index].SetKey(newKey);
-            this[index].HeapIndex = index;
-        }
-
-        public void InsertElement(T element)
-        {
-            _heapSize++;
-
-            if (_minHeap.Length < _heapSize)
-            {
-                Array.Resize(ref _minHeap, _heapSize);
-            }
-
-            var actualKey = element.GetKey();
-            element.SetKey(actualKey + 1);
-
-            this[_heapSize] = element;
-            DecreaseKey(_heapSize, actualKey);
-        }
-
-        private int GetParent(int i)
-        {
-            return i >> 1;
-        }
-
-        private int GetLeftChild(int i)
-        {
-            return i << 1;
-        }
-
-        private int GetRightChild(int i)
-        {
-            return (i << 1) + 1;
-        }
-
-        private void BuildMinHeap()
-        {
-            var lastParentIndex = _heapSize >> 1;
-            for (int i = lastParentIndex; i >= 1; i--)
-            {
-                MinHeapify(i);
-            }
+            this[index] = value;
         }
 
         private void MinHeapify(int index)
         {
-            var smallestIndex = index;
-
+            var smallest = index;
             while (true)
             {
                 var leftChildIndex = GetLeftChild(index);
                 var rightChildIndex = GetRightChild(index);
 
-                if (leftChildIndex <= _heapSize && this[leftChildIndex].GetKey() < this[smallestIndex].GetKey())
+                if (leftChildIndex <= HeapSize && this[leftChildIndex] < this[smallest])
                 {
-                    smallestIndex = leftChildIndex;
+                    smallest = leftChildIndex;
                 }
 
-                if (rightChildIndex <= _heapSize && this[rightChildIndex].GetKey() < this[smallestIndex].GetKey())
+                if (rightChildIndex <= HeapSize && this[rightChildIndex] < this[smallest])
                 {
-                    smallestIndex = rightChildIndex;
+                    smallest = rightChildIndex;
                 }
 
-                if (smallestIndex == index){ return;}
+                if (smallest == index) return;
 
-                SwapHeapElements(index, smallestIndex);
-
-                index = smallestIndex;
+                SwapHeapElements(index, smallest);
+                index = smallest;
             }
         }
 
-        private void SwapHeapElements(int firstIndex, int secondIndex)
+        private void BuildMinHeap()
         {
-            var temp = this[firstIndex];
-            this[firstIndex] = this[secondIndex];
-            this[secondIndex] = temp;
+            var startIndex = HeapSize >> 1;
 
-            this[firstIndex].HeapIndex = firstIndex;
-            this[secondIndex].HeapIndex = secondIndex;
+            while (startIndex != 0) MinHeapify(startIndex--);
         }
     }
 }

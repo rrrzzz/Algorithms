@@ -8,7 +8,7 @@ namespace Algorithms.Stanford.Graphs
         public int[] GetShortestPaths(Dictionary<int,Node> graph, int startingVertex)
         {
             var visitedNodesCount = 0;
-            var closestUnvisitedNodes = new MinHeap<Node>();
+            var closestUnvisitedNodes = new MinHeapUniversal<Node>();
             
             var pathLengths = new int[graph.Count + 1];
             var firstNode = graph[startingVertex];

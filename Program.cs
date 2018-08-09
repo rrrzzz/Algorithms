@@ -30,8 +30,8 @@ namespace Algorithms
             };
 
             
+            Console.WriteLine(MedianMaintenance.Solve());
 
-            Console.WriteLine(Solver2Sum.SolveTwoPointers());
             Console.ReadLine();
         }
     }

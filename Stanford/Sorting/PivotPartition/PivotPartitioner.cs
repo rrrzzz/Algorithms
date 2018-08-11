@@ -5,56 +5,58 @@ namespace Algorithms.Stanford.Sorting.PivotPartition
 {
     public class PivotPartitioner
     {
-        protected int[] Array { get; }
-        protected PivotSelect SelectPivotMethod { get; set; }
+        private PivotSelect PivotSelectionMethod { get; }
+        private readonly Random _randomizer;
 
-        public PivotPartitioner(int[] array, PivotSelect pivotSelectMethod)
+        public PivotPartitioner( PivotSelect pivotSelectionMethod)
         {
-            Array = array;
-            SelectPivotMethod = pivotSelectMethod;
+            PivotSelectionMethod = pivotSelectionMethod;
+            if (pivotSelectionMethod == PivotSelect.Random)
+            {
+                _randomizer = new Random();
+            }
         }
 
-        protected int Partition(int startIndex, int endIndex)
+        public int Partition(int[] array, int startIndex, int endIndex)
         {
-            var pivotIndex = ChoosePivot(startIndex, endIndex);
-            UtilityMethods.SwapValues(Array, pivotIndex, startIndex);
+            var pivotIndex = ChoosePivot(array, startIndex, endIndex);
+            UtilityMethods.SwapValues(array, pivotIndex, startIndex);
             pivotIndex = startIndex;
 
             var smallPartitionBorderIndex = startIndex + 1;
 
             for (int currentPosition = startIndex + 1; currentPosition <= endIndex; currentPosition++)
             {
-                if (Array[currentPosition] < Array[pivotIndex])
+                if (array[currentPosition] < array[pivotIndex])
                 {
-                    UtilityMethods.SwapValues(Array, smallPartitionBorderIndex++, currentPosition);
+                    UtilityMethods.SwapValues(array, smallPartitionBorderIndex++, currentPosition);
                 }
             }
 
             var finalPivotIndex = smallPartitionBorderIndex - 1;
-            UtilityMethods.SwapValues(Array, finalPivotIndex, pivotIndex);
+            UtilityMethods.SwapValues(array, finalPivotIndex, pivotIndex);
 
             return finalPivotIndex;
         }
 
-        private int ChoosePivot(int startIndex, int endIndex)
+        private int ChoosePivot(int[] array, int startIndex, int endIndex)
         {
-            switch (SelectPivotMethod)
+            switch (PivotSelectionMethod)
             {
                 case PivotSelect.First:
                     return startIndex;
                 case PivotSelect.Last:
                     return endIndex;
                 case PivotSelect.Median:
-                    return GetMedianElement(startIndex, endIndex);
+                    return GetMedianElement(array, startIndex, endIndex);
                 case PivotSelect.Random:
-                    var randomizer = new Random();
-                    return randomizer.Next(startIndex, endIndex);
+                    return _randomizer.Next(startIndex, endIndex);
                 default:
-                    throw new InvalidEnumArgumentException($"There is no such selection type as {SelectPivotMethod}");
+                    throw new InvalidEnumArgumentException($"There is no such selection type as {PivotSelectionMethod}");
             }
         }
 
-        private int GetMedianElement(int startIndex, int endIndex)
+        private int GetMedianElement(int[] array, int startIndex, int endIndex)
         {
             if (endIndex - startIndex == 1)
             {
@@ -63,9 +65,9 @@ namespace Algorithms.Stanford.Sorting.PivotPartition
 
             var middleIndex = (startIndex + endIndex) / 2;
 
-            var start = Array[startIndex];
-            var middle = Array[middleIndex];
-            var end = Array[endIndex];
+            var start = array[startIndex];
+            var middle = array[middleIndex];
+            var end = array[endIndex];
 
             var x = start - middle;
             var y = middle - end;

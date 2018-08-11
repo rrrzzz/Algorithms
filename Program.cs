@@ -1,5 +1,4 @@
 ﻿using System;
-using Algorithms.Stanford.ProgrammingAssignments;
 
 namespace Algorithms
 {
@@ -30,8 +29,6 @@ namespace Algorithms
             };
 
             
-            Console.WriteLine(MedianMaintenance.Solve());
-
             Console.ReadLine();
         }
     }

@@ -4,42 +4,40 @@ using Algorithms.Stanford.Sorting.PivotPartition;
 
 namespace Algorithms.Stanford.Sorting
 {
-    public class OrderStatistics : PivotPartitioner
+    public static class OrderStatistics
     {
-        public OrderStatistics(int[] array) : base(array, PivotSelect.Random)
+        public static int FindOrderStatistics(int[] array, int i)
         {
-        }
-
-        public int FindOrderStatistics(int i)
-        {
-            if (i < 1 || i > Array.Length)
+            if (i < 1 || i > array.Length)
             {
                 throw new ArgumentOutOfRangeException($"There is no {i}th smallest index in the array");
             }
 
+            var pivotPartitioner = new PivotPartitioner(PivotSelect.Random);
+
             i--;
             var startIndex = 0;
-            var endIndex = Array.Length - 1;
+            var endIndex = array.Length - 1;
 
-            var pivot = Partition(startIndex, endIndex);
+            var pivot = pivotPartitioner.Partition(array, startIndex, endIndex);
             while (pivot != i)
             {
                 if (pivot > i)
                 {
                     endIndex = pivot - 1;
-                    pivot = Partition(startIndex, endIndex);
+                    pivot = pivotPartitioner.Partition(array, startIndex, endIndex);
                 }
                 else
                 {
                     startIndex = pivot + 1;
-                    pivot = Partition(startIndex, endIndex);
+                    pivot = pivotPartitioner.Partition(array, startIndex, endIndex);
                 }
             }
 
-            return Array[pivot];
+            return array[pivot];
         }
 
-        public int FindOrderStatisticsRecursive(int i, int[] array)
+        public static int FindOrderStatisticsRecursive(int[] array, int i)
         {
             if (i < 1 || i > array.Length)
             {
@@ -50,9 +48,11 @@ namespace Algorithms.Stanford.Sorting
                 return array[0];
             }
 
+            var pivotPartitioner = new PivotPartitioner(PivotSelect.Random);
+
             i--;
 
-            var pivot = MyPartition(array);
+            var pivot = pivotPartitioner.Partition(array, 0, array.Length - 1);
             if (pivot == i)
             {
                 return array[i];
@@ -60,35 +60,11 @@ namespace Algorithms.Stanford.Sorting
             if (pivot < i)
             {
                 var rightArray = array.Skip(pivot + 1).ToArray();
-                return FindOrderStatisticsRecursive(i - pivot, rightArray);
+                return FindOrderStatisticsRecursive(rightArray, i - pivot);
             }
 
             var leftArray = array.Take(pivot + 1).ToArray();
-            return FindOrderStatisticsRecursive(i + 1, leftArray);
-        }
-
-        private int MyPartition(int[] array)
-        {
-            var endIndex = array.Length - 1;
-            var smallPartitionBorderIndex = 1;
-
-            var pivotIndex = new Random().Next(0, endIndex);
-            UtilityMethods.SwapValues(array, pivotIndex, 0);
-
-            pivotIndex = 0;
-
-            for (int currentPosition = 1; currentPosition <= endIndex; currentPosition++)
-            {
-                if (array[currentPosition] < array[pivotIndex])
-                {
-                    UtilityMethods.SwapValues(array, smallPartitionBorderIndex++, currentPosition);
-                }
-            }
-
-            var finalPivotIndex = smallPartitionBorderIndex - 1;
-            UtilityMethods.SwapValues(array, finalPivotIndex, pivotIndex);
-
-            return finalPivotIndex;
+            return FindOrderStatisticsRecursive(leftArray, i + 1);
         }
     }
 }

@@ -12,24 +12,11 @@
             IntializeUnionFindStructure(n);
         }
 
-        public void IntializeUnionFindStructure(int n)
-        {
-            Nodes = new int[n];
-            Sizes = new int[n];
-
-            for (int i = 0; i < n; i++)
-            {
-                Nodes[i] = i;
-                Sizes[i] = 1;
-            }
-        }
-
         public int FindRoot(int index)
         {
-            var parentIndex = Nodes[index];
-            if (Nodes[index] != Nodes[parentIndex])
+            if (Nodes[index] != index)
             {
-                Nodes[index] = FindRoot(parentIndex);
+                Nodes[index] = FindRoot(Nodes[index]);
             }
 
             return Nodes[index];
@@ -54,6 +41,18 @@
             {
                 Nodes[secondRoot] = firstRoot;
                 Sizes[firstRoot] += Sizes[secondRoot];
+            }
+        }
+
+        private void IntializeUnionFindStructure(int n)
+        {
+            Nodes = new int[n];
+            Sizes = new int[n];
+
+            for (int i = 0; i < n; i++)
+            {
+                Nodes[i] = i;
+                Sizes[i] = 1;
             }
         }
     }

@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using Algorithms.Stanford.Graphs;
+using Algorithms.Stanford.ProgrammingAssignments;
 
 namespace Algorithms
 {
@@ -6,9 +9,10 @@ namespace Algorithms
     {
         static void Main(string[] args)
         {
-            var array = new[] {16, 4, 10, 14, 7, 9, 3, 2, 8, 1 };
 
-            var graphList = new []
+            var array = new[] { 16, 4, 10, 14, 7, 9, 3, 2, 8, 1 };
+
+            var graphList = new[]
             {
                 new [] {1, 2, 5},
                 new [] {2, 3, 5, 6},
@@ -28,7 +32,26 @@ namespace Algorithms
                 new [] {4}
             };
 
-            
+            var graph = new Dictionary<int, NodeWeighted>
+            {
+                {1, new NodeWeighted(1)},
+                {2, new NodeWeighted(2)},
+                {3, new NodeWeighted(3)},
+                {4, new NodeWeighted(4)}
+            };
+
+            graph[1].Neighbours.Add(new Tuple<NodeWeighted, int>(graph[2], 1));
+            graph[1].Neighbours.Add(new Tuple<NodeWeighted, int>(graph[3], 9));
+            graph[1].Neighbours.Add(new Tuple<NodeWeighted, int>(graph[4], 3));
+            graph[2].Neighbours.Add(new Tuple<NodeWeighted, int>(graph[1], 1));
+            graph[2].Neighbours.Add(new Tuple<NodeWeighted, int>(graph[4], 2));
+            graph[3].Neighbours.Add(new Tuple<NodeWeighted, int>(graph[1], 9));
+            graph[3].Neighbours.Add(new Tuple<NodeWeighted, int>(graph[4], 6));
+            graph[4].Neighbours.Add(new Tuple<NodeWeighted, int>(graph[2], 2));
+            graph[4].Neighbours.Add(new Tuple<NodeWeighted, int>(graph[3], 6));
+            graph[4].Neighbours.Add(new Tuple<NodeWeighted, int>(graph[1], 3));
+
+            Console.WriteLine(ClusterizationSolver.GetMaxClusterizationSpacing(4));
             Console.ReadLine();
         }
     }

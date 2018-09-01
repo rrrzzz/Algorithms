@@ -36,9 +36,9 @@ namespace Algorithms.Stanford.ProgrammingAssignments
             return string.Join(", ", answerArray);
         }
 
-        private Dictionary<int, Node> ParseWightedGraphFromWeb()
+        private Dictionary<int, NodeWeighted> ParseWightedGraphFromWeb()
         {
-            var nodes = new Dictionary<int, Node>();
+            var nodes = new Dictionary<int, NodeWeighted>();
             string inputString;
 
             using (var client = new WebClient())
@@ -61,7 +61,7 @@ namespace Algorithms.Stanford.ProgrammingAssignments
                 var tailNode = int.Parse(stringArray[0]);
                 if (!nodes.ContainsKey(tailNode))
                 {
-                    nodes[tailNode] = new Node(tailNode);
+                    nodes[tailNode] = new NodeWeighted(tailNode);
                 }
 
                 for (int i = 1; i < stringArray.Length; i++)
@@ -72,10 +72,10 @@ namespace Algorithms.Stanford.ProgrammingAssignments
 
                     if (!nodes.ContainsKey(headNode))
                     {
-                        nodes[headNode] = new Node(headNode);
+                        nodes[headNode] = new NodeWeighted(headNode);
                     }
 
-                    var neighbourToAdd = new Tuple<Node, int>(nodes[headNode], weight);
+                    var neighbourToAdd = new Tuple<NodeWeighted, int>(nodes[headNode], weight);
                     nodes[tailNode].Neighbours.Add(neighbourToAdd);
                 }
             }

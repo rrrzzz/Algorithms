@@ -24,9 +24,9 @@
             return output;
         }
 
-        public void DecreaseKey(int index, int newKey)
+        public bool DecreaseKey(int index, int newKey)
         {
-            if (this[index].GetKey() <= newKey) return;
+            if (this[index].GetKey() <= newKey) return false;
 
             var heapObject = this[index];
             var parent = GetParent(index);
@@ -42,6 +42,7 @@
             this[index] = heapObject;
             this[index].SetKey(newKey);
             this[index].HeapIndex = index;
+            return true;
         }
 
         public void InsertElement(T element)

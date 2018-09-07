@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Algorithms.Stanford.Graphs;
-using Algorithms.Stanford.ProgrammingAssignments;
 
 namespace Algorithms
 {
@@ -10,7 +9,8 @@ namespace Algorithms
         static void Main(string[] args)
         {
 
-            var array = new[] { 16, 4, 10, 14, 7, 9, 3, 2, 8, 1 };
+            var array = new[] { 16, 4, 10, 14, 7, 9, 4, 2, 8, 1 };
+            var arrayTwoDigit = new[] { 16, 42, 10, 14, 71, 92, 34, 42, 58, 16 };
 
             var graphList = new[]
             {
@@ -51,7 +51,6 @@ namespace Algorithms
             graph[4].Neighbours.Add(new Tuple<NodeWeighted, int>(graph[3], 6));
             graph[4].Neighbours.Add(new Tuple<NodeWeighted, int>(graph[1], 3));
 
-            Console.WriteLine(ClusterizationSolver.GetMaxClusterizationSpacing(4));
             Console.ReadLine();
         }
     }

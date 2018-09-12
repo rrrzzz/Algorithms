@@ -9,7 +9,6 @@ namespace Algorithms.Stanford.DataStructures
 
         protected HeapBase()
         {
-            //HeapArray = Array.Empty<T>();
             HeapArray = new T[0];
         }
 
@@ -47,7 +46,7 @@ namespace Algorithms.Stanford.DataStructures
 
         protected void ResizeHeapArray()
         {
-            Array.Resize(ref HeapArray, HeapSize * 2);
+            Array.Resize(ref HeapArray, (HeapSize + 1) * 2);
         }
 
         protected virtual void SwapHeapElements(int firstIndex, int secondIndex)

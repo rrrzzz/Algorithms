@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Algorithms.Stanford.Graphs
+﻿namespace Algorithms.Stanford.Graphs
 {
     public class Node
     {

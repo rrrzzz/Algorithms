@@ -13,6 +13,8 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -45,6 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Corman\DataStructures\DoublyLinkedList.cs" />
+    <Compile Include="Corman\DataStructures\ListItem.cs" />
+    <Compile Include="Corman\DataStructures\QueueLinkedList.cs" />
+    <Compile Include="Corman\DataStructures\SinglyLinkedList.cs" />
+    <Compile Include="Corman\DataStructures\Stack.cs" />
     <Compile Include="Corman\FindMaxSubArray.cs" />
     <Compile Include="Corman\HeapStructure\Heap.cs" />
     <Compile Include="Corman\HeapStructure\PriorityQueue.cs" />

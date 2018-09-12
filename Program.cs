@@ -51,6 +51,26 @@ namespace Algorithms
             graph[4].Neighbours.Add(new Tuple<NodeWeighted, int>(graph[3], 6));
             graph[4].Neighbours.Add(new Tuple<NodeWeighted, int>(graph[1], 3));
 
+            var stack = new Corman.DataStructures.Stack<int>();
+
+            try
+            {
+                stack.Peek();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
+            try
+            {
+                stack.Pop();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
             Console.ReadLine();
         }
     }

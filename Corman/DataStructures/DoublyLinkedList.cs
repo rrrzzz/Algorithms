@@ -5,7 +5,8 @@
         public override void Insert(ListItem<T> item)
         {
             base.Insert(item);
-            Head.Next.Previous = Head;
+
+            if (Head.Next != null) Head.Next.Previous = Head;
         }
 
         public override void Delete(ListItem<T> item)

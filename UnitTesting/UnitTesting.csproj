@@ -48,8 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DoublyLinkedListTests.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueueTests.cs" />
+    <Compile Include="SinglyLinkedListInsertionTest.cs" />
+    <Compile Include="SinglyLinkedListTests.cs" />
     <Compile Include="StackTests.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -17,6 +17,7 @@ namespace Algorithms.Corman.DataStructures
             if (_queue.Head == null)
             {
                 _queue.Head = _tail = new ListItem<T>(item);
+                return;
             }
 
             _tail.Next = new ListItem<T>(item);
@@ -34,6 +35,11 @@ namespace Algorithms.Corman.DataStructures
             _queue.Head = _queue.Head.Next;
             
             return output;
+        }
+
+        public ListItem<T> Peek()
+        {
+            return _queue.Head;
         }
     }
 }

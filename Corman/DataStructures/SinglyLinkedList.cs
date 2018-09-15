@@ -13,24 +13,12 @@ namespace Algorithms.Corman.DataStructures
             Head = item;
         }
 
-        public ListItem<T> FindLastItem()
-        {
-            var currentItem = Head;
-
-            while (currentItem.Next != null)
-            {
-                currentItem = currentItem.Next;
-            }
-
-            return currentItem;
-        }
-
         public ListItem<T> Search(T value)
         {
             var currentItem = Head;
             while (currentItem != null && !EqualityComparer<T>.Default.Equals(currentItem.Value, value))
             {
-                currentItem = Head.Next;
+                currentItem = currentItem.Next;
             }
 
             return currentItem;
@@ -47,6 +35,7 @@ namespace Algorithms.Corman.DataStructures
             if (EqualityComparer<T>.Default.Equals(Head.Value, item.Value))
             {
                 Head = Head.Next;
+                return;
             }
 
             var previous = Head;
@@ -60,9 +49,10 @@ namespace Algorithms.Corman.DataStructures
             if (current == null) return;
 
             previous.Next = current.Next;
+            current.Next = null;
         }
 
-        public bool IsLoopExists()
+        public bool IsLoopExistsSpoilData()
         {
             if (Head.Next != null && EqualityComparer<T>.Default.Equals(Head.Next.Value, Head.Value))
             {
@@ -78,6 +68,28 @@ namespace Algorithms.Corman.DataStructures
             }
 
             return current == null;
+        }
+
+        public bool IsLoopExistsProper()
+        {
+            var fastSelector = Head.Next;
+            var slowSelector = Head;
+
+            while (true) 
+            {
+                if (fastSelector?.Next == null)
+                {
+                    return false;
+                }
+
+                if (EqualityComparer<T>.Default.Equals(fastSelector.Value, slowSelector.Value) || EqualityComparer<T>.Default.Equals(fastSelector.Next.Value, slowSelector.Value))
+                {
+                    return true;
+                }
+
+                fastSelector = fastSelector.Next.Next;
+                slowSelector = slowSelector.Next;
+            }
         }
     }
 }

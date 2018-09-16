@@ -1,4 +1,6 @@
-﻿namespace Algorithms.Stanford
+﻿using System;
+
+namespace Algorithms.Stanford
 {
     public class UnionFind
     {
@@ -29,6 +31,11 @@
 
         public void Union(int firstComponent, int secondComponent)
         {
+            if (IsComponentsConnected(firstComponent, secondComponent))
+            {
+                throw new ArgumentException($"Cannot connect {firstComponent} and {secondComponent}. Components are already connected!");
+            }
+
             var firstRoot = FindRoot(firstComponent);
             var secondRoot = FindRoot(secondComponent);
 

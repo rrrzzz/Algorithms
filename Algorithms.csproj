@@ -67,6 +67,7 @@
     <Compile Include="Stanford\Graphs\KruskalsMst.cs" />
     <Compile Include="Stanford\Graphs\Node.cs" />
     <Compile Include="Stanford\Graphs\PrimsMst.cs" />
+    <Compile Include="Stanford\ProgrammingAssignments\ClusterizationBinaryNodesSolver.cs" />
     <Compile Include="Stanford\ProgrammingAssignments\ClusterizationSolver.cs" />
     <Compile Include="Stanford\ProgrammingAssignments\DijkstraSolver.cs" />
     <Compile Include="Stanford\Graphs\GraphGenerator.cs" />

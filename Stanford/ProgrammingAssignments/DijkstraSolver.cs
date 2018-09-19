@@ -20,10 +20,6 @@ namespace Algorithms.Stanford.ProgrammingAssignments
         //The answer is
         //2599, 2610, 2947, 2052, 2367, 2399, 2029, 2442, 2505, 3068
 
-
-        private const string LinkToTestInput =
-            "https://lagunita.stanford.edu/assets/courseware/v1/c8748131579ef6bd10b2d46f616988e9/asset-v1:Engineering+Algorithms1+SelfPaced+type@asset+block/dijkstraData.txt";
-
         private readonly int[] _requiredPaths = {7, 37, 59, 82, 99, 115, 133, 165, 188, 197};
 
         public string Solve()
@@ -38,15 +34,11 @@ namespace Algorithms.Stanford.ProgrammingAssignments
 
         private Dictionary<int, NodeWeighted> ParseWightedGraphFromWeb()
         {
+            const string link =
+                "https://lagunita.stanford.edu/assets/courseware/v1/c8748131579ef6bd10b2d46f616988e9/asset-v1:Engineering+Algorithms1+SelfPaced+type@asset+block/dijkstraData.txt";
             var nodes = new Dictionary<int, NodeWeighted>();
-            string inputString;
 
-            using (var client = new WebClient())
-            {
-                inputString = client.DownloadString(LinkToTestInput);
-            }
-
-            var parsed = inputString.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            var parsed = HelperMethods.GetNodesParsedStringArray(link, '\n');
 
             var graphArray = new string[parsed.Length][];
 

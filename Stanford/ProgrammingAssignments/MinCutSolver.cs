@@ -47,13 +47,7 @@ namespace Algorithms.Stanford.ProgrammingAssignments
 
         private int[][] ParseGraphArrayStanfordWebSource(string link)
         {
-            string graphStringTable;
-            using (var webClinet = new WebClient())
-            {
-                graphStringTable = webClinet.DownloadString(link);
-            }
-
-            var graphStringArray = graphStringTable.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+            var graphStringArray = HelperMethods.GetNodesParsedStringArray(link, Environment.NewLine);
 
             var graphFinalArray = new int[graphStringArray.Length][];
 

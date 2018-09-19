@@ -18,9 +18,6 @@ namespace Algorithms.Stanford.ProgrammingAssignments
         //-3612829
         // heap implementation took 00:00:00.0052567 
 
-        private const string Link =
-            @"https://lagunita.stanford.edu/assets/courseware/v1/1f93e6cee93cbcf26ee59e2f801646cd/asset-v1:Engineering+Algorithms2+SelfPaced+type@asset+block/edges.txt";
-
         public static int FindMstCost()
         {
             var prim = new PrimsMst();
@@ -34,21 +31,18 @@ namespace Algorithms.Stanford.ProgrammingAssignments
 
         private static Dictionary<int, NodeWeighted> ParseMstGraphFromWeb()
         {
-            string graphString;
-            using (var webClient = new WebClient())
-            {
-                graphString = webClient.DownloadString(Link);
-            }
+            const string link =
+                @"https://lagunita.stanford.edu/assets/courseware/v1/1f93e6cee93cbcf26ee59e2f801646cd/asset-v1:Engineering+Algorithms2+SelfPaced+type@asset+block/edges.txt";
 
-            var graphArrayRaw = graphString.Split('\n');
-            var nodeCount = int.Parse(graphArrayRaw[0].Split(' ')[0]);
-            var edgeCount = int.Parse(graphArrayRaw[0].Split(' ')[1]);
+            var graphStringsArray = HelperMethods.GetNodesParsedStringArray(link, '\n');
+            var nodeCount = int.Parse(graphStringsArray[0].Split(' ')[0]);
+            var edgeCount = int.Parse(graphStringsArray[0].Split(' ')[1]);
 
             var graph = new Dictionary<int, NodeWeighted>(nodeCount);
 
             for (int i = 1; i <= edgeCount; i++)
             {
-                var currentEdge = graphArrayRaw[i].Split(' ').Select(int.Parse).ToArray();
+                var currentEdge = graphStringsArray[i].Split(' ').Select(int.Parse).ToArray();
                 var firstNode = currentEdge[0];
                 var secondNode = currentEdge[1];
                 var weight = currentEdge[2];

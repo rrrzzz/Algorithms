@@ -13,8 +13,6 @@ namespace Algorithms.Stanford.ProgrammingAssignments
 
     public static class MedianMaintenance
     {
-        private const string LinkToIntegers = "https://lagunita.stanford.edu/assets/courseware/v1/036a1a01e616390f2554e7e524da9a18/asset-v1:Engineering+Algorithms1+SelfPaced+type@asset+block/Median.txt";
-
         public static int Solve()
         {
             var stopwatch = new Stopwatch();
@@ -90,16 +88,11 @@ namespace Algorithms.Stanford.ProgrammingAssignments
 
         private static int[] ParseIntegersFromWeb()
         {
-            string integersString;
+            const string link = "https://lagunita.stanford.edu/assets/courseware/v1/036a1a01e616390f2554e7e524da9a18/asset-v1:Engineering+Algorithms1+SelfPaced+type@asset+block/Median.txt";
 
-            using (var webClient = new WebClient())
-            {
-                integersString = webClient.DownloadString(LinkToIntegers);
-            }
-
-            var stringArray = integersString.Split(new[] {Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries);
-
-            return stringArray.Select(int.Parse).ToArray();
+            return HelperMethods.GetNodesParsedStringArray(link, Environment.NewLine)
+                .Select(int.Parse)
+                .ToArray();
         }
     }
 }

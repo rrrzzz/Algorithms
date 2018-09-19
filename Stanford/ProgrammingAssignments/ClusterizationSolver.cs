@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using Algorithms.Stanford.Graphs;
@@ -35,13 +34,7 @@ namespace Algorithms.Stanford.ProgrammingAssignments
 
         private static List<Edge> ParseWeigthedEdgesFromWeb()
         {
-            string graphString;
-            using (var client = new WebClient())
-            {
-                graphString = client.DownloadString(Link);
-            }
-
-            var edgesParsedByLine = graphString.Split(new []{'\n'}, StringSplitOptions.RemoveEmptyEntries);
+            var edgesParsedByLine = HelperMethods.GetNodesParsedStringArray(Link, '\n');
             _nodeCount = int.Parse(edgesParsedByLine[0]);
 
             var output = new List<Edge>(_nodeCount);

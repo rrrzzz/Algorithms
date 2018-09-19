@@ -16,6 +16,9 @@ namespace Algorithms.Stanford.ProgrammingAssignments
         //The question is: what is the largest value of k such that there is a k-clustering with spacing at least 3? That is, how many clusters are needed to ensure that no pair of nodes with all but 2 bits in common get split into different clusters?
         // Answer: 6118
 
+
+        //read only 10,000 vertices and run your algorightm, then read 50,000, then 100,000, then 200,000 and compare the running times. They should grow linearly.
+
         public static int FindLargestClusterization()
         {
             var timer = new Stopwatch();
@@ -64,15 +67,9 @@ namespace Algorithms.Stanford.ProgrammingAssignments
         private static Dictionary<bool[], int> ParseBinaryNodeGraphFromWeb()
         {
             var output = new Dictionary<bool[], int>(new MyEqualityComparer());
-            string nodesString;
             var link = "https://lagunita.stanford.edu/assets/courseware/v1/d9dc8f4b1324fa1f18e51376d0f8d6f1/asset-v1:Engineering+Algorithms2+SelfPaced+type@asset+block/clustering_big.txt";
 
-            using (var client = new WebClient())
-            {
-                nodesString = client.DownloadString(link);
-            }
-
-            var stringParsed = nodesString.Split(new []{'\n'}, StringSplitOptions.RemoveEmptyEntries);
+            var stringParsed = HelperMethods.GetNodesParsedStringArray(link, '\n');
 
             var nodeCount = int.Parse(stringParsed[0].Split(' ')[0]);
             var indexCounter = 0;

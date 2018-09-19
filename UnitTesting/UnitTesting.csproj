@@ -55,6 +55,7 @@
     <Compile Include="SinglyLinkedListInsertionTest.cs" />
     <Compile Include="SinglyLinkedListTests.cs" />
     <Compile Include="StackTests.cs" />
+    <Compile Include="WeightIndependentSetTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

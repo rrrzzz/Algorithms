@@ -27,7 +27,7 @@ namespace Algorithms.Stanford.ProgrammingAssignments
         {
             const string link = "https://d3c33hcgiwev3.cloudfront.net/_790eb8b186eefb5b63d0bf38b5096873_mwis.txt?Expires=1537401600&Signature=Atom2t7Rv9U4u9XjiqE7CDpC5szM2tDcIl8aVdKe5uKEbVUt5DNFnlwl9M-4823cYdlLHXQPUlDaI75VzLh8T1L~SIducD6JcL3z8E1JyVH5MuEKoooN9U6Zn2Ho5jM9XWGCVeMz0Y0KIUA8xpXhBlPajSt08fOcOHjUmS7x4ds_&Key-Pair-Id=APKAJLTNE6QMUY6HBC5A";
 
-            var parsedLines = HelperMethods.GetNodesParsedStringArray(link, '\n');
+            var parsedLines = UtilityMethods.GetNodesParsedStringArray(link, '\n');
             var nodeCount = int.Parse(parsedLines[0]);
 
             var nodesIntArray = new int[nodeCount];

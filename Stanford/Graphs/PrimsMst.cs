@@ -30,7 +30,7 @@ namespace Algorithms.Stanford.Graphs
                     if (currentNode.HeapIndex == 0)
                     {
                         currentNode.Parent = cheapestNode;
-                        currentNode.Score = edgeWeight;
+                        currentNode.Value = edgeWeight;
                         cheapestEdgesHeap.InsertElement(currentNode);
                         continue;
                     }
@@ -44,7 +44,7 @@ namespace Algorithms.Stanford.Graphs
                 cheapestNode = cheapestEdgesHeap.ExtractMinElement();
                 cheapestNode.Visit();
 
-                var edge = new Tuple<int, int, int>(cheapestNode.Parent.Id, cheapestNode.Id, cheapestNode.Score);
+                var edge = new Tuple<int, int, int>(cheapestNode.Parent.Id, cheapestNode.Id, cheapestNode.Value);
                 msTree.Add(edge);
 
                 nodesCount--;

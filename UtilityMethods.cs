@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.IO;
+using System.Net;
 using System.Reflection;
 using Algorithms.Stanford;
 
@@ -41,6 +43,32 @@ namespace Algorithms
                     return reader.ReadToEnd();
                 }
             }
+        }
+
+        public static string[] GetNodesParsedStringArray(string link, string separator)
+        {
+            string content;
+            using (var client = new WebClient())
+            {
+                content = client.DownloadString(link);
+            }
+
+            var parsedLines = content.Split(new[] { separator }, StringSplitOptions.RemoveEmptyEntries);
+
+            return parsedLines;
+        }
+
+        public static string[] GetNodesParsedStringArray(string link, char separator)
+        {
+            string content;
+            using (var client = new WebClient())
+            {
+                content = client.DownloadString(link);
+            }
+
+            var parsedLines = content.Split(new[] { separator }, StringSplitOptions.RemoveEmptyEntries);
+
+            return parsedLines;
         }
     }
 }

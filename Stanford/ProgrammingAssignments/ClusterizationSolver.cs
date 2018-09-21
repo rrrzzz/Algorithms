@@ -34,7 +34,7 @@ namespace Algorithms.Stanford.ProgrammingAssignments
 
         private static List<Edge> ParseWeigthedEdgesFromWeb()
         {
-            var edgesParsedByLine = HelperMethods.GetNodesParsedStringArray(Link, '\n');
+            var edgesParsedByLine = UtilityMethods.GetNodesParsedStringArray(Link, '\n');
             _nodeCount = int.Parse(edgesParsedByLine[0]);
 
             var output = new List<Edge>(_nodeCount);

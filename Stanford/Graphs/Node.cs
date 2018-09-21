@@ -5,6 +5,8 @@
         public int Id { get; set; }
         public bool IsVisited { get; set; }
 
+        public Node(){}
+
         public Node(int id)
         {
             Id = id;

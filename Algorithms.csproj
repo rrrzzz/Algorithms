@@ -57,6 +57,7 @@
     <Compile Include="Corman\HeapStructure\PriorityQueue.cs" />
     <Compile Include="Corman\Sorting.cs" />
     <Compile Include="Stanford\DataStructures\BinaryTree.cs" />
+    <Compile Include="Stanford\DataStructures\BinaryTreeNode.cs" />
     <Compile Include="Stanford\DataStructures\HeapBase.cs" />
     <Compile Include="Stanford\DataStructures\MaxHeap.cs" />
     <Compile Include="Stanford\DataStructures\MinHeap.cs" />
@@ -67,12 +68,14 @@
     <Compile Include="Stanford\Graphs\KruskalsMst.cs" />
     <Compile Include="Stanford\Graphs\MaxWeightIndependentSetPathGraph.cs" />
     <Compile Include="Stanford\Graphs\Node.cs" />
+    <Compile Include="Stanford\Graphs\NodeHeapIndexable.cs" />
     <Compile Include="Stanford\Graphs\PrimsMst.cs" />
+    <Compile Include="Stanford\Misc\HuffmanCodes.cs" />
     <Compile Include="Stanford\ProgrammingAssignments\ClusterizationBinaryNodesSolver.cs" />
     <Compile Include="Stanford\ProgrammingAssignments\ClusterizationSolver.cs" />
     <Compile Include="Stanford\ProgrammingAssignments\DijkstraSolver.cs" />
     <Compile Include="Stanford\Graphs\GraphGenerator.cs" />
-    <Compile Include="Stanford\ProgrammingAssignments\HelperMethods.cs" />
+    <Compile Include="Stanford\ProgrammingAssignments\HuffmanCodesSolver.cs" />
     <Compile Include="Stanford\ProgrammingAssignments\KasarajuSccSolver.cs" />
     <Compile Include="Stanford\ProgrammingAssignments\MaxWeightIndependentSetSolver.cs" />
     <Compile Include="Stanford\ProgrammingAssignments\MedianMaintenance.cs" />

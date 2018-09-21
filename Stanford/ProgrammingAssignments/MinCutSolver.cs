@@ -47,7 +47,7 @@ namespace Algorithms.Stanford.ProgrammingAssignments
 
         private int[][] ParseGraphArrayStanfordWebSource(string link)
         {
-            var graphStringArray = HelperMethods.GetNodesParsedStringArray(link, Environment.NewLine);
+            var graphStringArray = UtilityMethods.GetNodesParsedStringArray(link, Environment.NewLine);
 
             var graphFinalArray = new int[graphStringArray.Length][];
 

@@ -90,7 +90,7 @@ namespace Algorithms.Stanford.ProgrammingAssignments
         {
             const string link = "https://lagunita.stanford.edu/assets/courseware/v1/036a1a01e616390f2554e7e524da9a18/asset-v1:Engineering+Algorithms1+SelfPaced+type@asset+block/Median.txt";
 
-            return HelperMethods.GetNodesParsedStringArray(link, Environment.NewLine)
+            return UtilityMethods.GetNodesParsedStringArray(link, Environment.NewLine)
                 .Select(int.Parse)
                 .ToArray();
         }

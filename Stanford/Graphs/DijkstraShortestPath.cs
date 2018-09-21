@@ -13,7 +13,7 @@ namespace Algorithms.Stanford.Graphs
             var pathLengths = new int[graph.Count + 1];
             var firstNode = graph[startingVertex];
 
-            firstNode.Score = 0;
+            firstNode.Value = 0;
             pathLengths[startingVertex] = 0;
             visitedNodesCount++;
             firstNode.Visit();
@@ -27,7 +27,7 @@ namespace Algorithms.Stanford.Graphs
                 foreach (var nodeWeightTuple in unvisitedHeadNodes)
                 {
                     var currentNode = nodeWeightTuple.Item1;
-                    var pathLength = nodeWeightTuple.Item2 + lastAddedNode.Score;
+                    var pathLength = nodeWeightTuple.Item2 + lastAddedNode.Value;
                     var isNodeInHeap = currentNode.HeapIndex != 0;
 
                     if (isNodeInHeap)
@@ -36,14 +36,14 @@ namespace Algorithms.Stanford.Graphs
                     }
                     else
                     {
-                        currentNode.Score = pathLength;
+                        currentNode.Value = pathLength;
                         closestUnvisitedNodes.InsertElement(currentNode);
                     }
                 }
 
                 lastAddedNode = closestUnvisitedNodes.ExtractMinElement();
                 lastAddedNode.Visit();
-                pathLengths[lastAddedNode.Id] = lastAddedNode.Score;
+                pathLengths[lastAddedNode.Id] = lastAddedNode.Value;
                 visitedNodesCount++;
             }
 

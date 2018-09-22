@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Corman\DataStructures\DoublyLinkedList.cs" />
+    <Compile Include="Corman\DataStructures\HashTable.cs" />
     <Compile Include="Corman\DataStructures\ListItem.cs" />
     <Compile Include="Corman\DataStructures\QueueLinkedList.cs" />
     <Compile Include="Corman\DataStructures\SinglyLinkedList.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="Corman\FindMaxSubArray.cs" />
     <Compile Include="Corman\HeapStructure\Heap.cs" />
     <Compile Include="Corman\HeapStructure\PriorityQueue.cs" />
+    <Compile Include="Corman\PrimeGenerator.cs" />
     <Compile Include="Corman\Sorting.cs" />
     <Compile Include="Stanford\DataStructures\BinaryTree.cs" />
     <Compile Include="Stanford\DataStructures\BinaryTreeNode.cs" />

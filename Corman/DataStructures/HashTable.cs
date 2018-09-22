@@ -10,7 +10,7 @@ namespace Algorithms.Corman.DataStructures
         private readonly int _acceptableLoad;
         private int ActualLoad => _elementCount / _buckets.Length;
         private int _elementCount;
-        private LinkedList<Tuple<int,T>>[] _buckets = new LinkedList<Tuple<int, T>>[11];
+        private LinkedList<Tuple<int, T>>[] _buckets = new LinkedList<Tuple<int, T>>[11];
 
         public HashTable()
         {
@@ -45,16 +45,9 @@ namespace Algorithms.Corman.DataStructures
         {
             _elementCount--;
             var bucket = GetBucket(key);
-            foreach (var tuple in bucket)
-            {
-                if (tuple.Item1 == key)
-                {
-                    bucket.Remove(tuple);
-                    return;
-                }
-            }
+            var nodeToRemove = FindNodeByKey(bucket, key);
 
-            throw new InvalidEnumArgumentException($"There is no key {key} in hashtable.");
+            bucket.Remove(nodeToRemove);
         }
 
         public T GetValue(int key)
@@ -71,12 +64,27 @@ namespace Algorithms.Corman.DataStructures
             throw new InvalidEnumArgumentException($"There is no key {key} in hashtable.");
         }
 
-        public void SetValue(int key, T value)
+        public void SetValue(int key, T newValue)
         {
             var bucket = GetBucket(key);
-            var listNode = bucket.Find(new Tuple<int, T>(key, value)) ?? 
-                           throw new InvalidEnumArgumentException($"There is no key {key} in hashtable.");
-            listNode.Value = new Tuple<int, T>(key, value);
+            var listNode = FindNodeByKey(bucket, key);
+            listNode.Value = new Tuple<int, T>(key, newValue);
+        }
+
+        private LinkedListNode<Tuple<int,T>> FindNodeByKey(LinkedList<Tuple<int,T>> bucket, int key)
+        {
+            var currentNode = bucket.First;
+            while (currentNode != null && currentNode.Value.Item1 != key)
+            {
+                currentNode = currentNode.Next;
+            }
+
+            if (currentNode == null)
+            {
+                throw new InvalidEnumArgumentException($"There is no key {key} in hashtable.");
+            }
+
+            return currentNode;
         }
 
         private LinkedList<Tuple<int, T>> GetBucket(int key)

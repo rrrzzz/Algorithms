@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 
 namespace Algorithms.Corman.DataStructures
@@ -12,21 +11,19 @@ namespace Algorithms.Corman.DataStructures
         private int _elementCount;
         private LinkedList<Tuple<int, T>>[] _buckets = new LinkedList<Tuple<int, T>>[11];
 
-        public HashTable()
-        {
-            _acceptableLoad = 5;
-        }
+        public HashTable() : this(5){}
 
         public HashTable(int load)
         {
             _acceptableLoad = load;
+            InitializeBuckets();
         }
 
         public void Add(int key, T value)
         {
             _elementCount++;
 
-            if (ActualLoad > _acceptableLoad)
+            if (ActualLoad >= _acceptableLoad)
             {
                 ResizeHashTable();
             }
@@ -35,7 +32,7 @@ namespace Algorithms.Corman.DataStructures
 
             if (bucket.Any(x => x.Item1 == key))
             {
-                throw new InvalidEnumArgumentException($"Key {key} is already present in hashtable.");
+                throw new ArgumentException($"Key {key} is already present in hashtable.");
             }
 
             bucket.AddFirst(new Tuple<int, T>(key, value));
@@ -45,7 +42,7 @@ namespace Algorithms.Corman.DataStructures
         {
             _elementCount--;
             var bucket = GetBucket(key);
-            var nodeToRemove = FindNodeByKey(bucket, key);
+            var nodeToRemove = FindKeyValuePairByKey(bucket, key);
 
             bucket.Remove(nodeToRemove);
         }
@@ -61,17 +58,17 @@ namespace Algorithms.Corman.DataStructures
                 }
             }
 
-            throw new InvalidEnumArgumentException($"There is no key {key} in hashtable.");
+            throw new ArgumentException($"There is no key {key} in hashtable.");
         }
 
         public void SetValue(int key, T newValue)
         {
             var bucket = GetBucket(key);
-            var listNode = FindNodeByKey(bucket, key);
+            var listNode = FindKeyValuePairByKey(bucket, key);
             listNode.Value = new Tuple<int, T>(key, newValue);
         }
 
-        private LinkedListNode<Tuple<int,T>> FindNodeByKey(LinkedList<Tuple<int,T>> bucket, int key)
+        private LinkedListNode<Tuple<int,T>> FindKeyValuePairByKey(LinkedList<Tuple<int,T>> bucket, int key)
         {
             var currentNode = bucket.First;
             while (currentNode != null && currentNode.Value.Item1 != key)
@@ -81,7 +78,7 @@ namespace Algorithms.Corman.DataStructures
 
             if (currentNode == null)
             {
-                throw new InvalidEnumArgumentException($"There is no key {key} in hashtable.");
+                throw new ArgumentException($"There is no key {key} in hashtable.");
             }
 
             return currentNode;
@@ -102,6 +99,7 @@ namespace Algorithms.Corman.DataStructures
             var closestPrime = PrimeGenerator.GetNextClosestPrime(_buckets.Length * 2);
             var oldBuckets = _buckets;
             _buckets = new LinkedList<Tuple<int, T>>[closestPrime];
+            InitializeBuckets();
 
             foreach (var bucket in oldBuckets)
             {
@@ -110,6 +108,14 @@ namespace Algorithms.Corman.DataStructures
                     var newBucket = GetBucket(tuple.Item1);
                     newBucket.AddFirst(tuple);
                 }
+            }
+        }
+
+        private void InitializeBuckets()
+        {
+            for (int i = 0; i < _buckets.Length; i++)
+            {
+                _buckets[i] = new LinkedList<Tuple<int, T>>();
             }
         }
     }

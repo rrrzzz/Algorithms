@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Algorithms.Corman;
 using Algorithms.Stanford.Graphs;
 using Algorithms.Stanford.Misc;
 using Algorithms.Stanford.ProgrammingAssignments;
@@ -52,7 +53,7 @@ namespace Algorithms
             graph[4].Neighbours.Add(new Tuple<NodeWeighted, int>(graph[3], 6));
             graph[4].Neighbours.Add(new Tuple<NodeWeighted, int>(graph[1], 3));
 
-            HuffmanCodesSolver.GetMinMaxLengthHuffmanCode();
+           
             Console.ReadLine();
         }
     }

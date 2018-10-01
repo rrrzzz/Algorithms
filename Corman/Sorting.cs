@@ -122,6 +122,7 @@ namespace Algorithms.Corman
                 valuesCount[i] += valuesCount[i - 1];
             }
 
+            // inverse for loop to preserve order of elements with satellite data
             for (int i = arrayToSort.Length - 1; i >= 0; i--)
             {
                 output[valuesCount[arrayToSort[i]] - 1] = arrayToSort[i];

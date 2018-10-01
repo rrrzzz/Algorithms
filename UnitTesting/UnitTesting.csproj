@@ -49,6 +49,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DoublyLinkedListTests.cs" />
+    <Compile Include="HashTableTests.cs" />
+    <Compile Include="PrimeGeneratorTests.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueueTests.cs" />

@@ -42,7 +42,7 @@ namespace Algorithms.Stanford.ProgrammingAssignments
 		{
 			const string link = @"https://lagunita.stanford.edu/assets/courseware/v1/85f7268f796f7014abab35a19999783c/asset-v1:Engineering+Algorithms2+SelfPaced+type@asset+block/jobs.txt";
 
-			var jobsArray = UtilityMethods.GetNodesParsedStringArray(link, '\n');
+			var jobsArray = UtilityMethods.GetParsedStringArrayFromWeb(link, '\n');
 			var jobsCount = int.Parse(jobsArray[0]);
 			var output = new Job[jobsCount];
 			for (int i = 1; i <= jobsCount; i++)

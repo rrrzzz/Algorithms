@@ -34,7 +34,7 @@ namespace Algorithms.Stanford.ProgrammingAssignments
             const string link =
                 @"https://lagunita.stanford.edu/assets/courseware/v1/1f93e6cee93cbcf26ee59e2f801646cd/asset-v1:Engineering+Algorithms2+SelfPaced+type@asset+block/edges.txt";
 
-            var graphStringsArray = UtilityMethods.GetNodesParsedStringArray(link, '\n');
+            var graphStringsArray = UtilityMethods.GetParsedStringArrayFromWeb(link, '\n');
             var nodeCount = int.Parse(graphStringsArray[0].Split(' ')[0]);
             var edgeCount = int.Parse(graphStringsArray[0].Split(' ')[1]);
 

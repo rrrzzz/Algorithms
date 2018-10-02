@@ -38,7 +38,7 @@ namespace Algorithms.Stanford.ProgrammingAssignments
                 "https://lagunita.stanford.edu/assets/courseware/v1/c8748131579ef6bd10b2d46f616988e9/asset-v1:Engineering+Algorithms1+SelfPaced+type@asset+block/dijkstraData.txt";
             var nodes = new Dictionary<int, NodeWeighted>();
 
-            var parsed = UtilityMethods.GetNodesParsedStringArray(link, '\n');
+            var parsed = UtilityMethods.GetParsedStringArrayFromWeb(link, '\n');
 
             var graphArray = new string[parsed.Length][];
 

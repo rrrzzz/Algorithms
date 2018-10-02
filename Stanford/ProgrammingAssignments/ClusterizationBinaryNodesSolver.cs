@@ -69,7 +69,7 @@ namespace Algorithms.Stanford.ProgrammingAssignments
             var output = new Dictionary<bool[], int>(new MyEqualityComparer());
             var link = "https://lagunita.stanford.edu/assets/courseware/v1/d9dc8f4b1324fa1f18e51376d0f8d6f1/asset-v1:Engineering+Algorithms2+SelfPaced+type@asset+block/clustering_big.txt";
 
-            var stringParsed = UtilityMethods.GetNodesParsedStringArray(link, '\n');
+            var stringParsed = UtilityMethods.GetParsedStringArrayFromWeb(link, '\n');
 
             var nodeCount = int.Parse(stringParsed[0].Split(' ')[0]);
             var indexCounter = 0;

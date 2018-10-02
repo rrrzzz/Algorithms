@@ -37,7 +37,7 @@ namespace Algorithms.Stanford.ProgrammingAssignments
             const string link =
                 "https://d3c33hcgiwev3.cloudfront.net/_eed1bd08e2fa58bbe94b24c06a20dcdb_huffman.txt?Expires=1537574400&Signature=JEcvRQJ2aMIkxtr~FQG9r1Jm-CNx5ACHRZ1AX794ocfIPEcA4TBnJkSXAmeFktwrGrgDICatqFzU67XdV3BLfCaq5gwDJ9S2M610Bgl6xXgT24p3OWyRLBG5b5Lx66wY1rAgCr~uGk9j5BX6Y2zim~b4lM3qRVPKY3c77ra1yqk_&Key-Pair-Id=APKAJLTNE6QMUY6HBC5A";
 
-            return UtilityMethods.GetNodesParsedStringArray(link, '\n').Skip(1).Select(int.Parse).ToArray();
+            return UtilityMethods.GetParsedStringArrayFromWeb(link, '\n').Skip(1).Select(int.Parse).ToArray();
         }
     }
 }

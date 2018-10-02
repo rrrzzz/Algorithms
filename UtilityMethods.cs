@@ -45,7 +45,7 @@ namespace Algorithms
             }
         }
 
-        public static string[] GetNodesParsedStringArray(string link, string separator)
+        public static string[] GetParsedStringArrayFromWeb(string link, string separator)
         {
             string content;
             using (var client = new WebClient())
@@ -58,7 +58,7 @@ namespace Algorithms
             return parsedLines;
         }
 
-        public static string[] GetNodesParsedStringArray(string link, char separator)
+        public static string[] GetParsedStringArrayFromWeb(string link, char separator)
         {
             string content;
             using (var client = new WebClient())

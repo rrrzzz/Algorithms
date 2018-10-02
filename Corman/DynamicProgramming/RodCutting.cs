@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Algorithms.Stanford.Graphs;
 
 namespace Algorithms.Corman.DynamicProgramming
 {

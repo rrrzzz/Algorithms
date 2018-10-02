@@ -53,6 +53,7 @@
     <Compile Include="Corman\DataStructures\QueueLinkedList.cs" />
     <Compile Include="Corman\DataStructures\SinglyLinkedList.cs" />
     <Compile Include="Corman\DataStructures\Stack.cs" />
+    <Compile Include="Corman\DynamicProgramming\RodCutting.cs" />
     <Compile Include="Corman\FindMaxSubArray.cs" />
     <Compile Include="Corman\HeapStructure\Heap.cs" />
     <Compile Include="Corman\HeapStructure\PriorityQueue.cs" />

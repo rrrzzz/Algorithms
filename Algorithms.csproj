@@ -59,6 +59,7 @@
     <Compile Include="Corman\HeapStructure\PriorityQueue.cs" />
     <Compile Include="Corman\PrimeGenerator.cs" />
     <Compile Include="Corman\Sorting.cs" />
+    <Compile Include="HackerRank\StockExchangeMatchingAlgorithm.cs" />
     <Compile Include="HackerRank\VideoConference.cs" />
     <Compile Include="Stanford\DataStructures\BinaryTree.cs" />
     <Compile Include="Stanford\DataStructures\BinaryTreeNode.cs" />

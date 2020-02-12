@@ -53,11 +53,11 @@
     <Compile Include="Corman\DataStructures\QueueLinkedList.cs" />
     <Compile Include="Corman\DataStructures\SinglyLinkedList.cs" />
     <Compile Include="Corman\DataStructures\Stack.cs" />
-    <Compile Include="Corman\DynamicProgramming\RodCutting.cs" />
     <Compile Include="Corman\FindMaxSubArray.cs" />
     <Compile Include="Corman\HeapStructure\Heap.cs" />
     <Compile Include="Corman\HeapStructure\PriorityQueue.cs" />
     <Compile Include="Corman\PrimeGenerator.cs" />
+    <Compile Include="Corman\RodCutting.cs" />
     <Compile Include="Corman\Sorting.cs" />
     <Compile Include="HackerRank\StockExchangeMatchingAlgorithm.cs" />
     <Compile Include="HackerRank\VideoConference.cs" />
@@ -68,6 +68,7 @@
     <Compile Include="Stanford\DataStructures\MinHeap.cs" />
     <Compile Include="Stanford\DataStructures\IHeapIndexable.cs" />
     <Compile Include="Stanford\DataStructures\MinHeapUniversal.cs" />
+    <Compile Include="Stanford\Dynamic Programming\Knapsack.cs" />
     <Compile Include="Stanford\Graphs\DijkstraShortestPath.cs" />
     <Compile Include="Stanford\Graphs\Edge.cs" />
     <Compile Include="Stanford\Graphs\KruskalsMst.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="Stanford\Graphs\GraphGenerator.cs" />
     <Compile Include="Stanford\ProgrammingAssignments\HuffmanCodesSolver.cs" />
     <Compile Include="Stanford\ProgrammingAssignments\KasarajuSccSolver.cs" />
+    <Compile Include="Stanford\ProgrammingAssignments\KnapsackSolver.cs" />
     <Compile Include="Stanford\ProgrammingAssignments\MaxWeightIndependentSetSolver.cs" />
     <Compile Include="Stanford\ProgrammingAssignments\MedianMaintenance.cs" />
     <Compile Include="Stanford\ProgrammingAssignments\MinCutSolver.cs" />

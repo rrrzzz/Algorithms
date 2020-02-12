@@ -168,12 +168,13 @@ namespace Algorithms.Stanford.Sorting
         public List<int> BubbleSort(List<int> toSort)
         {
             var newList = toSort.ConvertAll(x => x);
+            var length = newList.Count;
             bool noSwaps;
 
             do
             {
                 noSwaps = true;
-                for (int i = 0; i < newList.Count - 1; i++)
+                for (int i = 0; i < length - 1; i++)
                 {
                     if (newList[i] > newList[i + 1])
                     {
@@ -183,6 +184,8 @@ namespace Algorithms.Stanford.Sorting
                         noSwaps = false;
                     }
                 }
+
+                length--;
             } while (!noSwaps);
 
             return newList;

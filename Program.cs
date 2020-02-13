@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Algorithms.Corman;
 using Algorithms.Stanford.Dynamic_Programming;
 using Algorithms.Stanford.Graphs;
@@ -54,9 +55,27 @@ namespace Algorithms
 //            graph[4].Neighbours.Add(new Tuple<NodeWeighted, int>(graph[3], 6));
 //            graph[4].Neighbours.Add(new Tuple<NodeWeighted, int>(graph[1], 3));
 
+            var sack = new[,] {{3, 2}, {1, 1}, {4, 4}};
+
+            var weight = 4; //max 6
+            
+            var s = new Knapsack(weight, sack);
+
+
+            // Console.WriteLine(s.GetOptimalSackValue());
+            // Console.WriteLine(s.GetOptimalSackValueBottomUpRecursive());
+
             var solver = new KnapsackSolver(); 
             
-            Console.WriteLine(solver.SolveLargeKnapsack());
+            var timer = new Stopwatch();
+            timer.Start();
+            Console.WriteLine(solver.SolveLargeKnapsackFast());
+            Console.WriteLine(timer.ElapsedMilliseconds);
+
+            // wrong answ 4471248
+            
+            // 4243395
+            // 3734
         }
     }
 }

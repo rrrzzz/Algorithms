@@ -57,25 +57,14 @@ namespace Algorithms
 
             var sack = new[,] {{3, 2}, {1, 1}, {4, 4}};
 
-            var weight = 4; //max 6
-            
-            var s = new Knapsack(weight, sack);
-
-
-            // Console.WriteLine(s.GetOptimalSackValue());
-            // Console.WriteLine(s.GetOptimalSackValueBottomUpRecursive());
-
+            var weight = 3; //max 6
+ 
             var solver = new KnapsackSolver(); 
             
             var timer = new Stopwatch();
             timer.Start();
             Console.WriteLine(solver.SolveLargeKnapsackFast());
             Console.WriteLine(timer.ElapsedMilliseconds);
-
-            // wrong answ 4471248
-            
-            // 4243395
-            // 3734
         }
     }
 }

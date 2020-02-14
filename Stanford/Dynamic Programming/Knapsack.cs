@@ -12,7 +12,6 @@ namespace Algorithms.Stanford.Dynamic_Programming
         private Dictionary<int, int>[] _cache;
 
         private readonly Dictionary<int, int> _weightToValue = new Dictionary<int, int>();
-        private int _currentItem = 1;
         private int _tempV;
 
         public Knapsack(int weight, int[,] items)
@@ -63,67 +62,42 @@ namespace Algorithms.Stanford.Dynamic_Programming
 
             return optItems.Take(index).ToArray();
         }
-
+        
         public int GetOptimalSackValueBottomUp()
         {
-            while (_currentItem <= _size)
+            var i = 1;
+            while (i <= _size)
             {
-                var w = _items[_currentItem - 1, 0];
-                var v = _items[_currentItem - 1, 1];
+                var w = _items[i - 1, 0];
+                var v = _items[i - 1, 1];
 
-                _currentItem++;
+                i++;
                 var maxDif = _weight - w;
                 if (maxDif < 0) continue;
 
-                
-                //var keys = _weightToValue.Keys.ToArray();
+                var keys = _weightToValue.Keys.ToArray();
+                var processedKeys = new Dictionary<int,int>();
 
-                var keys = _weightToValue.Keys.OrderBy(x => x).ToArray();
-                // foreach (var cw in keys)
-                // {
-                //     if (cw > maxDif) break;
-                //     
-                //     var wDif = cw - w;
-                //     var newVal = _weightToValue[cw] + v;
-                //
-                //     _weightToValue.TryGetValue(wDif, out _tempV);
-                //
-                //     if (_tempV == 0)
-                //         _weightToValue.Add(wDif, newVal);
-                //     else
-                //     {
-                //         var oldVal = _weightToValue[wDif];
-                //         if (oldVal < newVal) _weightToValue[wDif] = newVal;
-                //     }
-                // }
-                
                 foreach (var cw in keys)
                 {
                     var wDif = cw - w;
                     if (wDif < 0) continue;
-                
-                    var newVal = _weightToValue[cw] + v;
-                
-                    _weightToValue.TryGetValue(wDif, out _tempV);
-                
-                    if (_tempV == 0)
-                        _weightToValue.Add(wDif, newVal);
+
+                    int newVal;
+                    if (processedKeys.TryGetValue(cw, out _tempV)) newVal = _tempV + v;
+                    else newVal = _weightToValue[cw] + v;
+
+                    if (!_weightToValue.TryGetValue(wDif, out _tempV)) _weightToValue.Add(wDif, newVal);
+                    else if (_tempV >= newVal) ;
                     else
                     {
-                        var oldVal = _weightToValue[wDif];
-                        if (oldVal < newVal) _weightToValue[wDif] = newVal;
+                        processedKeys.Add(wDif, _tempV);
+                        _weightToValue[wDif] = newVal;
                     }
                 }
 
-                _weightToValue.TryGetValue(maxDif, out _tempV);
-
-                if (_tempV == 0)
-                    _weightToValue.Add(maxDif, v);
-                else
-                {
-                    var oldVal = _weightToValue[maxDif];
-                    if (oldVal < v) _weightToValue[maxDif] = v;
-                }
+                if (!_weightToValue.TryGetValue(maxDif, out _tempV)) _weightToValue.Add(maxDif, v);
+                else if (_tempV < v) _weightToValue[maxDif] = v;
             }
             return _weightToValue.Values.Max();
         }

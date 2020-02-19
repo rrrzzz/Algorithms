@@ -4,7 +4,7 @@ namespace Algorithms.Stanford.Graphs
 {
     public class NodeHeapIndexable : Node, IHeapIndexable
     {
-        public int Value { get; set; }
+        public int Value { get; set; } = Globals.DefaultDijkstraValue;
         public int HeapIndex { get; set; }
 
         public NodeHeapIndexable(){}

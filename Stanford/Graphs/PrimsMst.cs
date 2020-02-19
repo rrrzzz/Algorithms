@@ -35,7 +35,7 @@ namespace Algorithms.Stanford.Graphs
                         continue;
                     }
 
-                    if (cheapestEdgesHeap.DecreaseKey(currentNode.HeapIndex, edgeWeight))
+                    if (cheapestEdgesHeap.TryDecreaseKey(currentNode.HeapIndex, edgeWeight))
                     {
                         currentNode.Parent = cheapestNode;
                     }

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using Algorithms.Stanford.Dynamic_Programming;
 using Algorithms.Stanford.Graphs;
 
 namespace Algorithms.Stanford.ProgrammingAssignments
@@ -22,17 +24,20 @@ namespace Algorithms.Stanford.ProgrammingAssignments
 
         private readonly int[] _requiredPaths = {7, 37, 59, 82, 99, 115, 133, 165, 188, 197};
 
-        public string Solve()
-        {
-            var graph = ParseWightedGraphFromWeb();
-            var pathsArray = new DijkstraShortestPath().GetShortestPaths(graph, 1);
+        // public string Solve()
+        // {
+        //     var graph = ParseWeightedGraphFromWeb();
+        //
+        //     var t = new Stopwatch();
+        //     t.Start();
+        //     var pathsArray = new DijkstraShortestPath().GetShortestPaths(graph, 1);
+        //     
+        //     var answerArray = _requiredPaths.Select(x => pathsArray[x]).ToArray();
+        //
+        //     return string.Join(", ", answerArray);
+        // }
 
-            var answerArray = _requiredPaths.Select(x => pathsArray[x]).ToArray();
-
-            return string.Join(", ", answerArray);
-        }
-
-        private Dictionary<int, NodeWeighted> ParseWightedGraphFromWeb()
+        private Dictionary<int, NodeWeighted> ParseWeightedGraphFromWeb()
         {
             const string link =
                 "https://lagunita.stanford.edu/assets/courseware/v1/c8748131579ef6bd10b2d46f616988e9/asset-v1:Engineering+Algorithms1+SelfPaced+type@asset+block/dijkstraData.txt";
@@ -69,6 +74,8 @@ namespace Algorithms.Stanford.ProgrammingAssignments
 
                     var neighbourToAdd = new Tuple<NodeWeighted, int>(nodes[headNode], weight);
                     nodes[tailNode].Neighbours.Add(neighbourToAdd);
+                    var parentToAdd = new Tuple<NodeWeighted, int>(nodes[tailNode], weight);
+                    nodes[headNode].Parents.Add(parentToAdd);
                 }
             }
 

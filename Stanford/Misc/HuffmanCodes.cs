@@ -61,7 +61,7 @@ namespace Algorithms.Stanford.Misc
             while (nodeQueue.Count != 0)
             {
                 var currentNodeTuple = nodeQueue.Dequeue();
-                (var encoding, var node) = currentNodeTuple;
+                var (encoding, node) = currentNodeTuple;
 
                 if (node.IsLeaf())
                 {

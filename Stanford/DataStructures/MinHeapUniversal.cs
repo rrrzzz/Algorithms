@@ -24,7 +24,7 @@
             return output;
         }
 
-        public bool DecreaseKey(int index, int newKey)
+        public bool TryDecreaseKey(int index, int newKey)
         {
             if (this[index].GetKey() <= newKey) return false;
 
@@ -58,7 +58,7 @@
             element.SetKey(actualKey + 1);
 
             this[HeapSize] = element;
-            DecreaseKey(HeapSize, actualKey);
+            TryDecreaseKey(HeapSize, actualKey);
         }
 
         private void BuildMinHeap()

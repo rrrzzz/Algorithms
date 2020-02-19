@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Net;
+using Algorithms.Stanford.Sorting;
 using Algorithms.Stanford.Sorting.PivotPartition;
 
-namespace Algorithms.Stanford.Sorting.Quicksort
+namespace Algorithms.Stanford.ProgrammingAssignments
 {
     public static class QuicksortComparesSolver
     {

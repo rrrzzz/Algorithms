@@ -2,8 +2,8 @@
 {
     public class Node
     {
-        public int Id { get; set; }
-        public bool IsVisited { get; set; }
+        public int Id { get; }
+        public bool IsVisited { get; private set; }
 
         public Node(){}
 

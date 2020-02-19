@@ -68,7 +68,10 @@
     <Compile Include="Stanford\DataStructures\MinHeap.cs" />
     <Compile Include="Stanford\DataStructures\IHeapIndexable.cs" />
     <Compile Include="Stanford\DataStructures\MinHeapUniversal.cs" />
+    <Compile Include="Stanford\Dynamic Programming\BellmanFord.cs" />
+    <Compile Include="Stanford\Dynamic Programming\JohnsonsReweighting.cs" />
     <Compile Include="Stanford\Dynamic Programming\Knapsack.cs" />
+    <Compile Include="Stanford\Globals.cs" />
     <Compile Include="Stanford\Graphs\DijkstraShortestPath.cs" />
     <Compile Include="Stanford\Graphs\Edge.cs" />
     <Compile Include="Stanford\Graphs\KruskalsMst.cs" />
@@ -77,6 +80,7 @@
     <Compile Include="Stanford\Graphs\NodeHeapIndexable.cs" />
     <Compile Include="Stanford\Graphs\PrimsMst.cs" />
     <Compile Include="Stanford\Misc\HuffmanCodes.cs" />
+    <Compile Include="Stanford\ProgrammingAssignments\ApspSolver.cs" />
     <Compile Include="Stanford\ProgrammingAssignments\ClusterizationBinaryNodesSolver.cs" />
     <Compile Include="Stanford\ProgrammingAssignments\ClusterizationSolver.cs" />
     <Compile Include="Stanford\ProgrammingAssignments\DijkstraSolver.cs" />
@@ -89,14 +93,14 @@
     <Compile Include="Stanford\ProgrammingAssignments\MinCutSolver.cs" />
     <Compile Include="Stanford\Graphs\NodeWeighted.cs" />
     <Compile Include="Stanford\ProgrammingAssignments\PrimsMstSolver.cs" />
+    <Compile Include="Stanford\ProgrammingAssignments\QuicksortComparesSolver.cs" />
     <Compile Include="Stanford\ProgrammingAssignments\SchedulingSolver.cs" />
     <Compile Include="Stanford\ProgrammingAssignments\Solver2Sum.cs" />
     <Compile Include="Stanford\Sorting\OrderStatistics.cs" />
     <Compile Include="Stanford\Sorting\PivotPartition\PivotPartitioner.cs" />
     <Compile Include="Stanford\Sorting\PivotPartition\PivotSelect.cs" />
-    <Compile Include="Stanford\Sorting\Quicksort\QuicksortComparesCounter.cs" />
-    <Compile Include="Stanford\Sorting\Quicksort\QuicksortComparesSolver.cs" />
     <Compile Include="Stanford\Graphs\KargerMinCut.cs" />
+    <Compile Include="Stanford\Sorting\QuicksortComparesCounter.cs" />
     <Compile Include="Stanford\UnionFind.cs" />
     <Compile Include="UtilityMethods.cs" />
     <Compile Include="HackerRank\EvenTree.cs" />

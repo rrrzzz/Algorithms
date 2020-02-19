@@ -23,17 +23,17 @@ namespace Algorithms.Stanford.Sorting.PivotPartition
             UtilityMethods.SwapValues(array, pivotIndex, startIndex);
             pivotIndex = startIndex;
 
-            var smallPartitionBorderIndex = startIndex + 1;
+            var smallerPartitionBorderIndex = startIndex + 1;
 
             for (int currentPosition = startIndex + 1; currentPosition <= endIndex; currentPosition++)
             {
                 if (array[currentPosition] < array[pivotIndex])
                 {
-                    UtilityMethods.SwapValues(array, smallPartitionBorderIndex++, currentPosition);
+                    UtilityMethods.SwapValues(array, smallerPartitionBorderIndex++, currentPosition);
                 }
             }
 
-            var finalPivotIndex = smallPartitionBorderIndex - 1;
+            var finalPivotIndex = smallerPartitionBorderIndex - 1;
             UtilityMethods.SwapValues(array, finalPivotIndex, pivotIndex);
 
             return finalPivotIndex;
@@ -74,8 +74,7 @@ namespace Algorithms.Stanford.Sorting.PivotPartition
             var z = start - end;
 
             if (x * y > 0) return middleIndex;
-            if (x * z > 0) return endIndex;
-            return startIndex;
+            return x * z > 0 ? endIndex : startIndex;
         }
     }
 }

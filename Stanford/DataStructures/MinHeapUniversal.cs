@@ -19,6 +19,7 @@
             var output = GetMinElement();
 
             this[1] = this[HeapSize--];
+            this[1].HeapIndex = 1;
             MinHeapify(1);
 
             return output;
@@ -95,6 +96,7 @@
 
                 index = smallestIndex;
             }
+
         }
 
         protected override void SwapHeapElements(int firstIndex, int secondIndex)

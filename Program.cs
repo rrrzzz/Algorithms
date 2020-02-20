@@ -30,12 +30,15 @@ namespace Algorithms
 
 
 
-           
 
-            
-           
-            
-            Console.WriteLine(new ApspSolver().SolveThirdLink());
+
+
+            var stop = new Stopwatch();
+            stop.Start();
+
+            var val = new ApspSolver().SolveFourthLink();
+            Console.WriteLine(stop.ElapsedMilliseconds);
+            Console.WriteLine(val);
             // .max 2147483647
 
         }

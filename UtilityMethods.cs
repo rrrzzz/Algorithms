@@ -11,8 +11,9 @@ using Algorithms.Stanford.Graphs;
 
 namespace Algorithms
 {
-    public static class UtilityMethods
+    public class UtilityMethods
     {
+        public int number = 25;
         public static void SwapValues<T>(T[] array , int firstIndex, int secondIndex)
         {
             var temp = array[firstIndex];

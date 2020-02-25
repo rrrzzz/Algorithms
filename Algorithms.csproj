@@ -71,6 +71,7 @@
     <Compile Include="Stanford\Dynamic Programming\BellmanFord.cs" />
     <Compile Include="Stanford\Dynamic Programming\JohnsonsReweighting.cs" />
     <Compile Include="Stanford\Dynamic Programming\Knapsack.cs" />
+    <Compile Include="Stanford\Dynamic Programming\TravellingSalesman.cs" />
     <Compile Include="Stanford\Globals.cs" />
     <Compile Include="Stanford\Graphs\DijkstraShortestPath.cs" />
     <Compile Include="Stanford\Graphs\Edge.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Stanford\ProgrammingAssignments\QuicksortComparesSolver.cs" />
     <Compile Include="Stanford\ProgrammingAssignments\SchedulingSolver.cs" />
     <Compile Include="Stanford\ProgrammingAssignments\Solver2Sum.cs" />
+    <Compile Include="Stanford\ProgrammingAssignments\TravellingSalesmanSolution.cs" />
     <Compile Include="Stanford\Sorting\OrderStatistics.cs" />
     <Compile Include="Stanford\Sorting\PivotPartition\PivotPartitioner.cs" />
     <Compile Include="Stanford\Sorting\PivotPartition\PivotSelect.cs" />

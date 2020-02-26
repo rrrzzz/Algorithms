@@ -11,70 +11,63 @@ namespace Algorithms.Stanford.ProgrammingAssignments
         //In this assignment you will implement one or more algorithms for the traveling salesman problem,
         //such as the dynamic programming algorithm covered in the video lectures. Here is a data file describing a TSP instance.
         //Calculate the minimum cost of a traveling salesman tour for this instance, rounded down to the nearest integer.
-        
+        //answer is 26442
+ 
         private const string Link =
             "https://lagunita.stanford.edu/assets/courseware/v1/0557f47943b80364030343bfd38d0c72/asset-v1:Engineering+Algorithms2+SelfPaced+type@asset+block/tsp.txt";
 
-
-        // public float SolveTravelingSalesman()
-        // {
-        //     var coords = ParseCityCoords();
-        //     
-        //     var tsp = new TravellingSalesman();
-        //
-        //     return tsp.GetOptimalTour(coords);
-        // }
-        //
-        // public float SolveTravelingSalesmanTest()
-        // {
-        //     var tsp = new TravellingSalesman();
-        //
-        //     return tsp.GetOptimalTourTest(Enumerable.Range(0,4).ToArray());
-        // }
-
-        public void PrintCoords3()
+        private readonly double[]  _xs =
         {
-            var coords = ParseCityCoords();
-            
-            char c = 'A';
-            foreach (var vec2 in coords)
-            {
-                Console.WriteLine($"{c} = ({vec2.X},{vec2.Y})");
-                c++;
-            }
-        }
+            20833.33,
+            20900,
+            21600,
+            23616.67,
+            23700,
+            23883.33,
+            24166.67,
+            26133.33,
+            27990.69,
+            21600,
+            22583.33,
+            21600,
+            21300,
+            22183.33,
+            22683.33
+        };
+
+        private readonly double[] _ys =
+        {
+            17100,
+            17066.67,
+            16500,
+            15866.67,
+            15933.33,
+            14533.33,
+            13250,
+            14500,
+            9405.644,
+            14966.67,
+            14300,
+            14150,
+            13016.67,
+            13133.33,
+            12716.67
+        };
         
-        public void PrintCoords()
+        public float SolveTravelingSalesman()
         {
-            var coords = ParseCityCoords();
+            var tsp = new TravellingSalesman();
             
-            char c = 'A';
-            foreach (var vec2 in coords)
+            var pointsCount = _ys.Length;
+            Vector2[] points = new Vector2[pointsCount];
+
+            for (int i = 0; i < pointsCount; i++)
             {
-                Console.WriteLine($"{vec2.X}");
-            }
-            
-            Console.WriteLine($"\n\n\n");
-            foreach (var vec2 in coords)
-            {
-                Console.WriteLine($"{vec2.Y}");
-            }
-            
-        }
-        
-        public void PrintCoords2()
-        {
-            var coords = ParseCityCoords();
-            var stringB = new StringBuilder();
-            char c = 'A';
-            foreach (var vec2 in coords)
-            {
-                stringB.Append($"{c} = ({vec2.X},{vec2.Y}), ");
-                c++;
+                points[i] = new Vector2((float)_xs[i],(float)_ys[i]);
             }
 
-            Console.WriteLine(stringB.ToString());
-            
+            var (pathlength, optimalPath) = tsp.GetTourPathLengthToLastNode(points);
+            return pathlength;
         }
 
         private Vector2[] ParseCityCoords()

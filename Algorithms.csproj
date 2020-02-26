@@ -61,7 +61,6 @@
     <Compile Include="Corman\Sorting.cs" />
     <Compile Include="HackerRank\StockExchangeMatchingAlgorithm.cs" />
     <Compile Include="HackerRank\VideoConference.cs" />
-    <Compile Include="Stanford\DataStructures\BinaryTree.cs" />
     <Compile Include="Stanford\DataStructures\BinaryTreeNode.cs" />
     <Compile Include="Stanford\DataStructures\HeapBase.cs" />
     <Compile Include="Stanford\DataStructures\MaxHeap.cs" />

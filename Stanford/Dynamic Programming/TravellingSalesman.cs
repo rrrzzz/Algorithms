@@ -85,7 +85,6 @@ namespace Algorithms.Stanford.Dynamic_Programming
 
             foreach (var setSize in Enumerable.Range(1, coords.Length - 1))
             {
-                Console.WriteLine("Current set size is " + setSize);
                 foreach (var subset in sizesToSubsets[setSize])
                 {
                     foreach (var element in subset.Where(x => x != StartIndex))

@@ -65,7 +65,7 @@ namespace Algorithms.Stanford.ProgrammingAssignments
             {
                 points[i] = new Vector2((float)_xs[i],(float)_ys[i]);
             }
-
+            
             var (pathlength, optimalPath) = tsp.GetTourPathLengthToLastNode(points);
             return pathlength;
         }

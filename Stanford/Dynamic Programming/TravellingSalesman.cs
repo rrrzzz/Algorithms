@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -26,13 +27,13 @@ namespace Algorithms.Stanford.Dynamic_Programming
          * subsets - dict size:subsets. Subset - hashset? Check equality
          */
         private const int StartIndex = 0;
-        
-        public Tuple<float,int[]> GetTourPathLengthToLastNode(Vector2[] coords)
+
+        public Tuple<float, int[]> GetTourPathLengthToLastNode(Vector2[] coords)
         {
             var s = CalculateMinPathForAllDestinations(coords);
             float? minTourLength = null;
-              
-            var superset = new HashSet<int>(Enumerable.Range(0,coords.Length));
+
+            var superset = new HashSet<int>(Enumerable.Range(0, coords.Length));
             var bestFinish = -1;
             foreach (var i in superset)
             {
@@ -41,46 +42,47 @@ namespace Algorithms.Stanford.Dynamic_Programming
                 var pathLength = (float?) s[key]?[0];
                 if (!pathLength.HasValue) continue;
                 if (!minTourLength.HasValue) minTourLength = float.MaxValue;
-                
+
                 var finalLength = GetDistance(coords[i], coords[StartIndex]) + pathLength.Value;
                 minTourLength = Math.Min(minTourLength.Value, finalLength);
                 if (Math.Abs(minTourLength.Value - finalLength) < 0.001) bestFinish = i;
             }
 
             if (bestFinish == -1 || !minTourLength.HasValue) return null;
-              
+
             var path = new int [coords.Length];
             path[coords.Length - 1] = bestFinish;
             var bestPathNode = bestFinish;
             var currentSet = new HashSet<int>(superset);
-              
+
             for (int i = coords.Length - 1; i > 0; i--)
             {
-                var currentKey = new Tuple<HashSet<int>, int>(currentSet,bestPathNode);
+                var currentKey = new Tuple<HashSet<int>, int>(currentSet, bestPathNode);
                 var temp = bestPathNode;
-                bestPathNode = (int)s[currentKey][1];
+                bestPathNode = (int) s[currentKey][1];
                 currentSet.Remove(temp);
-                path[i-1] = bestPathNode;
+                path[i - 1] = bestPathNode;
             }
+
             return new Tuple<float, int[]>(minTourLength.Value, path);
         }
-        
+
         private Dictionary<Tuple<HashSet<int>, int>, object[]> CalculateMinPathForAllDestinations(Vector2[] coords)
         {
             var s = new Dictionary<Tuple<HashSet<int>, int>, object[]>(new TupleKeysComparer());
             var sizesToSubsets = GenerateSubsets(coords.Length);
-            
-            foreach (var subset in Enumerable.Range(0,coords.Length).Select(x => new HashSet<int>{x}))
+
+            foreach (var subset in Enumerable.Range(0, coords.Length).Select(x => new HashSet<int> {x}))
             {
                 var element = subset.First();
                 var tup = new Tuple<HashSet<int>, int>(subset, element);
                 if (element == StartIndex)
                 {
-                    s[tup] = new object[]{(float?)0, 0};
+                    s[tup] = new object[] {(float?) 0, 0};
                 }
                 else s[tup] = null;
             }
-            
+
             foreach (var setSize in Enumerable.Range(1, coords.Length - 1))
             {
                 Console.WriteLine("Current set size is " + setSize);
@@ -91,63 +93,63 @@ namespace Algorithms.Stanford.Dynamic_Programming
                         float? min = null;
                         var minPredecessor = -1;
                         var elementKey = new Tuple<HashSet<int>, int>(subset, element);
-                            
+
                         foreach (var i in subset.Where(x => x != element))
                         {
                             var smallerSet = new HashSet<int>(subset);
                             smallerSet.Remove(element);
-                                
+
                             if (i == StartIndex && smallerSet.Count > 1) continue;
-                                
+
                             var key = new Tuple<HashSet<int>, int>(smallerSet, i);
-                            var pathLength = (float?)s[key]?[0];
+                            var pathLength = (float?) s[key]?[0];
                             if (!pathLength.HasValue) continue;
                             if (!min.HasValue) min = float.MaxValue;
-                                
+
                             var finalLength = pathLength.Value + GetDistance(coords[element], coords[i]);
 
                             min = Math.Min(min.Value, finalLength);
-                                
+
                             if (Math.Abs(min.Value - finalLength) < 0.001) minPredecessor = i;
                         }
-                            
+
                         if (!min.HasValue) s[elementKey] = null;
-                        else s[elementKey] = new object[]{min,minPredecessor};
+                        else s[elementKey] = new object[] {min, minPredecessor};
                     }
                 }
             }
+
             return s;
         }
 
-       private float GetDistance(Vector2 s, Vector2 t)
+        private float GetDistance(Vector2 s, Vector2 t)
         {
             var x = s.X - t.X;
             var y = s.Y - t.Y;
-            return (float)Math.Sqrt(x * x + y * y);
+            return (float) Math.Sqrt(x * x + y * y);
         }
-       
-       private List<HashSet<int>>[] GenerateSubsets(int setSize)
-       {
-           var powerSet = new List<HashSet<int>>[setSize];
-           
-           foreach (var bitSet in Enumerable.Range(1, (1 << setSize) - 1))
-           {
-               if (bitSet % 1000000 == 0)
-               {
-                   Console.WriteLine("Set number " + bitSet);
-               }
-               
-               var hashSet = new HashSet<int>();
-               foreach (var itemIndex in Enumerable.Range(0, setSize))
-               {
-                   if ((bitSet & (1 << itemIndex)) != 0) hashSet.Add(itemIndex);
-               }
-               var subsetSize = hashSet.Count - 1;
-               if (powerSet[subsetSize] == null) powerSet[subsetSize] = new List<HashSet<int>> {hashSet};
-               else powerSet[subsetSize].Add(hashSet);
-           }
-           return powerSet;
-       }
+
+        private List<HashSet<int>>[] GenerateSubsets(int setSize)
+        {
+            var powerSet = new List<HashSet<int>>[setSize];
+
+            foreach (var bitSet in Enumerable.Range(1, (1 << setSize) - 1))
+            {
+                var hashSet = new HashSet<int>();
+                if ((bitSet & 1 << StartIndex) == 0) continue;
+
+                foreach (var itemIndex in Enumerable.Range(0, setSize))
+                {
+                    if ((bitSet & (1 << itemIndex)) != 0) hashSet.Add(itemIndex);
+                }
+
+                var subsetSize = hashSet.Count - 1;
+                if (powerSet[subsetSize] == null) powerSet[subsetSize] = new List<HashSet<int>> {hashSet};
+                else powerSet[subsetSize].Add(hashSet);
+            }
+
+            return powerSet;
+        }
     }
 
     internal class TupleKeysComparer : IEqualityComparer<Tuple<HashSet<int>, int>>

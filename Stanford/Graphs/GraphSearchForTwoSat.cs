@@ -1,40 +1,19 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace Algorithms.Stanford.Graphs
 {
-	public class GraphSearch
+    public class GraphSearchForTwoSat
 	{
-		private bool[] _isNodeVisited;
+		private Dictionary<int, bool> _isNodeVisited;
 		private readonly int _nodeCount;
 
-		public GraphSearch(int nodeCount)
+		public GraphSearchForTwoSat(int nodeCount)
 		{
 			_nodeCount = nodeCount;
-			_isNodeVisited = new bool [_nodeCount];
+			_isNodeVisited = new Dictionary<int, bool>(_nodeCount);
 		}
 
-		public void BreadthFirstSearch(Dictionary<int, List<int>> graph, int start)
-		{
-			var nodeQueue = new Queue<int>();
-			_isNodeVisited[start] = true;
-
-			nodeQueue.Enqueue(start);
-
-			while (nodeQueue.Count != 0)
-			{
-				var currentNode = nodeQueue.Dequeue();
-				foreach (var node in graph[currentNode])
-				{
-					if (_isNodeVisited[node]) continue;
-
-					_isNodeVisited[node] = true;
-
-					nodeQueue.Enqueue(node);
-				}
-			}
-		}
-
-		public void DepthFirstSinkSearchStack(Dictionary<int, List<int>> graph, int start, List<int> finishedNodes)
+		private void DepthFirstSinkSearchStack(Dictionary<int, List<int>> graph, int start, List<int> finishedNodes)
 		{
 			var nodeStack = new Stack<int>();
 			nodeStack.Push(start);
@@ -67,7 +46,7 @@ namespace Algorithms.Stanford.Graphs
 			}
 		}
 
-		public void DepthFirstSinkSearchRecursive(Dictionary<int, List<int>> graph, int start, List<int> finishedNodes)
+		private void DepthFirstSinkSearchRecursive(Dictionary<int, List<int>> graph, int start, List<int> finishedNodes)
 		{
 			_isNodeVisited[start] = true;
 
@@ -91,9 +70,7 @@ namespace Algorithms.Stanford.Graphs
 
 		public List<int> GetTopologicalOrdering(Dictionary<int, List<int>> graph)
 		{
-			var output = new List<int>();
-
-			DepthFirstSinkSearchOnEachNode(graph, output);
+			var output = DepthFirstSinkSearchOnEachNode(graph);
 
 			output.Reverse();
 
@@ -102,13 +79,13 @@ namespace Algorithms.Stanford.Graphs
 
 		public List<List<int>> KasarajuFindSccs(Dictionary<int, List<int>> graph)
 		{
+			ResetNodeVisits(graph);
+			
 			var sccList = new List<List<int>>();
 			var reversedGraph = ReverseEdges(graph);
-			var explorationFinishTimes = new List<int>();
-
-			DepthFirstSinkSearchOnEachNode(reversedGraph, explorationFinishTimes);
-
-			ResetNodeVisits();
+			var explorationFinishTimes = DepthFirstSinkSearchOnEachNode(reversedGraph);
+			
+			ResetNodeVisits(graph);
 
 			for (int i = explorationFinishTimes.Count - 1; i >= 0; i--)
 			{
@@ -123,24 +100,26 @@ namespace Algorithms.Stanford.Graphs
 			return sccList;
 		}
 
-		private void ResetNodeVisits()
+		private void ResetNodeVisits(Dictionary<int, List<int>> graph)
 		{
-			_isNodeVisited = new bool[_nodeCount];
+			foreach (var node in graph.Keys)
+			{
+				_isNodeVisited[node] = false;
+			}
 		}
-
-		//TODO: Init adjacency list with actual node ids instead of consecutive numbers 
+		
 		private Dictionary<int, List<int>> ReverseEdges(Dictionary<int, List<int>> graph)
 		{
 			var reversedGraph = new Dictionary<int, List<int>>(_nodeCount);
-			
-			GraphGenerator.InitializeAdjacencyList(reversedGraph, _nodeCount);
 
-			foreach (var node in graph)
+			foreach (var node in graph.Keys)
 			{
-				var tailNode = node.Key;
+				var tailNode = node;
 
 				foreach (var headNode in graph[tailNode])
 				{
+					if (!reversedGraph.ContainsKey(headNode)) reversedGraph.Add(headNode, new List<int>());
+					
 					reversedGraph[headNode].Add(tailNode);
 				}
 			}
@@ -148,17 +127,19 @@ namespace Algorithms.Stanford.Graphs
 			return reversedGraph;
 		}
 
-		private void DepthFirstSinkSearchOnEachNode(Dictionary<int, List<int>> graph, List<int> finishedNodes)
+		private List<int> DepthFirstSinkSearchOnEachNode(Dictionary<int, List<int>> graph)
 		{
-			foreach (var node in graph)
+			var visitedNodes = new List<int>();
+			foreach (var node in graph.Keys)
 			{
-				var nodeKey = node.Key;
 				{
-					if (_isNodeVisited[nodeKey]) continue;
+					if (_isNodeVisited[node]) continue;
 
-					DepthFirstSinkSearch(graph, nodeKey, finishedNodes);
+					DepthFirstSinkSearch(graph, node, visitedNodes);
 				}
 			}
+
+			return visitedNodes;
 		}
 
 		private void DepthFirstSinkSearch(Dictionary<int, List<int>> graph, int start, List<int> finishedNodes)

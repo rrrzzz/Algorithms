@@ -74,6 +74,7 @@
     <Compile Include="Stanford\Globals.cs" />
     <Compile Include="Stanford\Graphs\DijkstraShortestPath.cs" />
     <Compile Include="Stanford\Graphs\Edge.cs" />
+    <Compile Include="Stanford\Graphs\GraphSearchForTwoSat.cs" />
     <Compile Include="Stanford\Graphs\KruskalsMst.cs" />
     <Compile Include="Stanford\Graphs\MaxWeightIndependentSetPathGraph.cs" />
     <Compile Include="Stanford\Graphs\Node.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="Stanford\ProgrammingAssignments\SchedulingSolver.cs" />
     <Compile Include="Stanford\ProgrammingAssignments\Solver2Sum.cs" />
     <Compile Include="Stanford\ProgrammingAssignments\TravellingSalesmanSolution.cs" />
+    <Compile Include="Stanford\ProgrammingAssignments\TwoSatSolver.cs" />
     <Compile Include="Stanford\Sorting\OrderStatistics.cs" />
     <Compile Include="Stanford\Sorting\PivotPartition\PivotPartitioner.cs" />
     <Compile Include="Stanford\Sorting\PivotPartition\PivotSelect.cs" />

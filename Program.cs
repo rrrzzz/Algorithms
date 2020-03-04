@@ -16,18 +16,6 @@ namespace Algorithms
     {
         static void Main(string[] args)
         {
-            //x 1 y 2 z 3 w 4 u 5 
-            var ar = new[]
-            {
-                new[] {-1, 2}, new[] {-2, 3}, new[] {-3, 4}, new[] {-4, 5}, new[] {-5, -1}, new[] {1, 4}, new[] {-4, 1}
-            };
-//TrueFalse
-            var timer = new Stopwatch();
-            timer.Start();
-            Console.WriteLine(new TwoSatSolver().SolveTwoSatScc());
-            //Console.WriteLine(new TwoSatSolver().TestTwoSatTwo());
-            Console.WriteLine(new TimeSpan(timer.ElapsedTicks).Seconds);
-            
         }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using Algorithms.Stanford.Graphs;
@@ -13,7 +14,7 @@ namespace Algorithms.Stanford.ProgrammingAssignments
         // Your task is to determine which of the 6 instances are satisfiable, and which are unsatisfiable. In the box below,
         // enter a 6-bit string, where the ith bit should be 1 if the ith instance is satisfiable, and 0 otherwise. For example,
         // if you think that the first 3 instances are satisfiable and the last 3 are not, then you should enter the string 111000 in the box below.
-        // Answer:
+        // Answer: 101100
 
         private const string Link0 = "https://lagunita.stanford.edu/assets/courseware/v1/3b06ac260bfdf1f6b9b2c740f64aa767/asset-v1:Engineering+Algorithms2+SelfPaced+type@asset+block/2sat1.txt";
         private const string Link1 = "https://lagunita.stanford.edu/assets/courseware/v1/00f3826732c3bf38ce375da9b8890b16/asset-v1:Engineering+Algorithms2+SelfPaced+type@asset+block/2sat2.txt";
@@ -39,7 +40,8 @@ namespace Algorithms.Stanford.ProgrammingAssignments
                     conds[i] = new[] {parsed[0], parsed[1]};
                 }
                 
-                res += new PapadimitrousTwoSat().GetConditionsSatisfiability(conds) ? 1 : 0;
+                
+                res += new PapadimitrousTwoSat().GetConditionsSatisfiability(conds);
             }
 
             return res;

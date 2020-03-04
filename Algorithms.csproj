@@ -81,6 +81,7 @@
     <Compile Include="Stanford\Graphs\NodeHeapIndexable.cs" />
     <Compile Include="Stanford\Graphs\PrimsMst.cs" />
     <Compile Include="Stanford\Misc\HuffmanCodes.cs" />
+    <Compile Include="Stanford\Misc\PapadimitrousTwoSat.cs" />
     <Compile Include="Stanford\ProgrammingAssignments\ApspSolver.cs" />
     <Compile Include="Stanford\ProgrammingAssignments\ClusterizationBinaryNodesSolver.cs" />
     <Compile Include="Stanford\ProgrammingAssignments\ClusterizationSolver.cs" />

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Algorithms.Stanford.Graphs;
+using Algorithms.Stanford.Misc;
 
 namespace Algorithms.Stanford.ProgrammingAssignments
 {
@@ -23,20 +24,40 @@ namespace Algorithms.Stanford.ProgrammingAssignments
 
         private List<string> _links = new List<string>{Link0, Link1, Link2, Link3, Link4, Link5};
 
+        public string SolveTwoSatPapadimitrous()
+        {
+            var res = "";
+            foreach (var link in _links)
+            {
+                var conditionsStrings = UtilityMethods.GetParsedStringArrayFromWeb(link, '\n').Skip(1).ToArray();
+                var count = conditionsStrings.Length;
+                var conds = new int[count][];
 
-        public void SolveTwoSat()
+                for (int i = 0; i < count; i++)
+                {
+                    var parsed = conditionsStrings[i].Split(' ').Select(int.Parse).ToArray();
+                    conds[i] = new[] {parsed[0], parsed[1]};
+                }
+                
+                res += new PapadimitrousTwoSat().GetConditionsSatisfiability(conds) ? 1 : 0;
+            }
+
+            return res;
+        }
+        
+        public string SolveTwoSatScc()
         {
             var result = "";
 
             foreach (var link in _links)
             {
-                result += DetermineSatisfiability(link);
+                result += DetermineSatisfiabilityScc(link) ? 1 : 0;
             }
-
-            Console.WriteLine(result);
+            
+            return result;
         }
         
-        bool DetermineSatisfiability(string link)
+        bool DetermineSatisfiabilityScc(string link)
         {
             var graph = CreateImplicationGraph(link);
             var gSearch = new GraphSearchForTwoSat(graph.Count);
@@ -68,72 +89,24 @@ namespace Algorithms.Stanford.ProgrammingAssignments
                 var isA = a > 0;
                 var isB = b > 0;
 
-                foreach (var variable in new []{a, -a, b, -b})
-                {
-                    if (implicationGraph.ContainsKey(variable)) continue;
-                    implicationGraph.Add(variable, new List<int>());
-                }
-
-                if (isA)
-                {
-                    if (isB)
-                    {
-                        implicationGraph[-a].Add(b);
-                        implicationGraph[-b].Add(a);
-                    }
-                    else
-                    {
-                        implicationGraph[-a].Add(-b);
-                        implicationGraph[b].Add(a);
-                    }
-                }
-                else
-                {
-                    if (isB)
-                    {
-                       implicationGraph[a].Add(b);
-                       implicationGraph[-b].Add(-a);
-                    }
-                    else
-                    {
-                      implicationGraph[a].Add(-b);
-                      implicationGraph[b].Add(-a);
-                    } 
-                }
-            }
-
-            return implicationGraph;
-        }
-        
-        public static bool TestTwoSat (int[][] conditions)
-        {
-            var implicationGraph = new Dictionary<int, List<int>>();
-
-            foreach (var condition in conditions)
-            {
-                var a = condition[0];
-                var b = condition[1];
-                var isA = a > 0;
-                var isB = b > 0;
-
                 a = Math.Abs(a);
                 b = Math.Abs(b);
 
-                foreach (var variable in new []{a, -a, b, -b})
-                {
-                    if (implicationGraph.ContainsKey(variable)) continue;
-                    implicationGraph.Add(variable, new List<int>());
-                }
-
                 if (isA)
                 {
                     if (isB)
                     {
+                        AddKeyIfNotPresent(implicationGraph, -a);
+                        AddKeyIfNotPresent(implicationGraph, -b);
+                        
                         implicationGraph[-a].Add(b);
                         implicationGraph[-b].Add(a);
                     }
                     else
                     {
+                        AddKeyIfNotPresent(implicationGraph, -a);
+                        AddKeyIfNotPresent(implicationGraph, b);
+                        
                         implicationGraph[-a].Add(-b);
                         implicationGraph[b].Add(a);
                     }
@@ -142,31 +115,30 @@ namespace Algorithms.Stanford.ProgrammingAssignments
                 {
                     if (isB)
                     {
+                        AddKeyIfNotPresent(implicationGraph, a);
+                        AddKeyIfNotPresent(implicationGraph, -b);
+                        
                         implicationGraph[a].Add(b);
                         implicationGraph[-b].Add(-a);
                     }
                     else
                     {
+                        AddKeyIfNotPresent(implicationGraph, a);
+                        AddKeyIfNotPresent(implicationGraph, b);
+                        
                         implicationGraph[a].Add(-b);
                         implicationGraph[b].Add(-a);
-                    } 
+                    }
                 }
             }
 
-            var gSearch = new GraphSearchForTwoSat(implicationGraph.Count);
-            var sccs = gSearch.KasarajuFindSccs(implicationGraph);
-            
-            foreach (var scc in sccs)
-            {
-                var set = new HashSet<int>();
-                foreach (var node in scc)
-                {
-                    if (set.Contains(-node)) return false;
-                    set.Add(node);
-                }
-            }
+            return implicationGraph;
+        }
 
-            return true;
+        void AddKeyIfNotPresent(Dictionary<int, List<int>> d, int key)
+        {
+            if (d.ContainsKey(key)) return;
+            d.Add(key, new List<int>());
         }
     }
 }

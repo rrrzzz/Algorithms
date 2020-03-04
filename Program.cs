@@ -21,9 +21,13 @@ namespace Algorithms
             {
                 new[] {-1, 2}, new[] {-2, 3}, new[] {-3, 4}, new[] {-4, 5}, new[] {-5, -1}, new[] {1, 4}, new[] {-4, 1}
             };
-
-            Console.WriteLine(new PapadimitrousTwoSat().GetConditionsSatisfiability(ar));
-            ;
+//TrueFalse
+            var timer = new Stopwatch();
+            timer.Start();
+            Console.WriteLine(new TwoSatSolver().SolveTwoSatScc());
+            //Console.WriteLine(new TwoSatSolver().TestTwoSatTwo());
+            Console.WriteLine(new TimeSpan(timer.ElapsedTicks).Seconds);
+            
         }
     }
 }

@@ -12,6 +12,28 @@ namespace Algorithms.Stanford.Graphs
 			_nodeCount = nodeCount;
 			_isNodeVisited = new Dictionary<int, bool>(_nodeCount);
 		}
+		
+		public List<List<int>> KasarajuFindSccs(Dictionary<int, List<int>> graph)
+		{
+			var sccList = new List<List<int>>();
+			var reversedGraph = ReverseEdges(graph);
+			ResetNodeVisits(reversedGraph, graph);
+			var explorationFinishTimes = DepthFirstSinkSearchOnEachNode(reversedGraph);
+			
+			ResetNodeVisits(graph, reversedGraph);
+
+			for (int i = explorationFinishTimes.Count - 1; i >= 0; i--)
+			{
+				var currentNode = explorationFinishTimes[i];
+				if(_isNodeVisited[currentNode]) continue;
+
+				var tempList = new List<int>();
+				DepthFirstSinkSearch(graph, currentNode, tempList);
+				sccList.Add(tempList);
+			}
+
+			return sccList;
+		}
 
 		private void DepthFirstSinkSearchStack(Dictionary<int, List<int>> graph, int start, List<int> finishedNodes)
 		{
@@ -21,6 +43,7 @@ namespace Algorithms.Stanford.Graphs
 			while (nodeStack.Count != 0)
 			{
 				var currentNode = nodeStack.Peek();
+				
 				_isNodeVisited[currentNode] = true;
 
 				var hasNeighbours = false;
@@ -68,41 +91,14 @@ namespace Algorithms.Stanford.Graphs
 			finishedNodes.Add(start);
 		}
 
-		public List<int> GetTopologicalOrdering(Dictionary<int, List<int>> graph)
-		{
-			var output = DepthFirstSinkSearchOnEachNode(graph);
-
-			output.Reverse();
-
-			return output;
-		}
-
-		public List<List<int>> KasarajuFindSccs(Dictionary<int, List<int>> graph)
-		{
-			ResetNodeVisits(graph);
-			
-			var sccList = new List<List<int>>();
-			var reversedGraph = ReverseEdges(graph);
-			var explorationFinishTimes = DepthFirstSinkSearchOnEachNode(reversedGraph);
-			
-			ResetNodeVisits(graph);
-
-			for (int i = explorationFinishTimes.Count - 1; i >= 0; i--)
-			{
-				var currentNode = explorationFinishTimes[i];
-				if(_isNodeVisited[currentNode]) continue;
-
-				var tempList = new List<int>();
-				DepthFirstSinkSearch(graph, currentNode, tempList);
-				sccList.Add(tempList);
-			}
-
-			return sccList;
-		}
-
-		private void ResetNodeVisits(Dictionary<int, List<int>> graph)
+		private void ResetNodeVisits(Dictionary<int, List<int>> graph, Dictionary<int, List<int>> graph2)
 		{
 			foreach (var node in graph.Keys)
+			{
+				_isNodeVisited[node] = false;
+			}
+			
+			foreach (var node in graph2.Keys)
 			{
 				_isNodeVisited[node] = false;
 			}

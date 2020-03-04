@@ -29,13 +29,14 @@ namespace Algorithms.Stanford.Misc
             var varCount = variables.Count;
 
             var trialsNum = (int)Math.Log(varCount, 2);
-
+            var satconds = 0;
+            var condBool = new bool[condCount];
+            
             for (int i = 0; i < trialsNum; i++)
             {
+                Console.WriteLine($"current trial: {i} out of {trialsNum}");
                 for (int z = 0; z < 2 * varCount * varCount; z++)
                 {
-                    var satconds = 0;
-
                     while (satconds != condCount)
                     {
                         var rndIndex = rnd.Next(condCount);
@@ -49,13 +50,17 @@ namespace Algorithms.Stanford.Misc
                         var isSecondSat = variables[second] == isSecondTrue;
                         if (!(isFirstSat || isSecondSat))
                         {
-                            satconds = 0;
+                            condBool = new bool[condCount];
+                            condBool[rndIndex] = true;
+                            satconds = 1;
                             var choice = rnd.Next(2);
                             var toChange = choice == 0 ? first : second;
                             variables[toChange] = !variables[toChange];
                             break;
                         }
-                        
+
+                        if (condBool[rndIndex]) continue;
+                        condBool[rndIndex] = true;
                         satconds++;
                     }
 

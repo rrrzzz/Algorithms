@@ -7,9 +7,6 @@ namespace Algorithms.Stanford.Misc
 {
     public class HuffmanCodes
     {
-        
-        int[] freq = new[] {28, 27, 20, 15, 10};
-        
         public Dictionary<int, string> GetCharacterEncoding(int[] charWeights)
         {
             var minHeap = InitializeMinHeap(charWeights);

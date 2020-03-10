@@ -70,7 +70,9 @@
     <Compile Include="Stanford\Dynamic Programming\BellmanFord.cs" />
     <Compile Include="Stanford\Dynamic Programming\JohnsonsReweighting.cs" />
     <Compile Include="Stanford\Dynamic Programming\Knapsack.cs" />
+    <Compile Include="Stanford\Dynamic Programming\LongestCommonSubstring.cs" />
     <Compile Include="Stanford\Dynamic Programming\OptimalBst.cs" />
+    <Compile Include="Stanford\Dynamic Programming\SequenceAlignment.cs" />
     <Compile Include="Stanford\Dynamic Programming\TravellingSalesman.cs" />
     <Compile Include="Stanford\Globals.cs" />
     <Compile Include="Stanford\Graphs\DijkstraShortestPath.cs" />

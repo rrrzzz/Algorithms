@@ -17,14 +17,7 @@ namespace Algorithms
     {
         static void Main(string[] args)
         {
-
             
-            var freqs = new[] {.2f, .05f, .17f, .1f, .2f, .03f, .25f};
-
-            var f = new OptimalBst();
-            var res = f.GetOptimalExpectedValueBstSearch(freqs);
-
-            Console.WriteLine(res);
         }
     }
 }

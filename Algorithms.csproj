@@ -74,6 +74,7 @@
     <Compile Include="Stanford\Dynamic Programming\OptimalBst.cs" />
     <Compile Include="Stanford\Dynamic Programming\SequenceAlignment.cs" />
     <Compile Include="Stanford\Dynamic Programming\TravellingSalesman.cs" />
+    <Compile Include="Stanford\Extensions.cs" />
     <Compile Include="Stanford\Globals.cs" />
     <Compile Include="Stanford\Graphs\DijkstraShortestPath.cs" />
     <Compile Include="Stanford\Graphs\Edge.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Stanford\Graphs\NodeHeapIndexable.cs" />
     <Compile Include="Stanford\Graphs\PrimsMst.cs" />
     <Compile Include="Stanford\Misc\HuffmanCodes.cs" />
+    <Compile Include="Stanford\Misc\KaratsubaMultiplication.cs" />
     <Compile Include="Stanford\Misc\PapadimitrousTwoSat.cs" />
     <Compile Include="Stanford\ProgrammingAssignments\ApspSolver.cs" />
     <Compile Include="Stanford\ProgrammingAssignments\ClusterizationBinaryNodesSolver.cs" />
@@ -91,6 +93,7 @@
     <Compile Include="Stanford\ProgrammingAssignments\DijkstraSolver.cs" />
     <Compile Include="Stanford\Graphs\GraphGenerator.cs" />
     <Compile Include="Stanford\ProgrammingAssignments\HuffmanCodesSolver.cs" />
+    <Compile Include="Stanford\ProgrammingAssignments\KaratsubaSolver.cs" />
     <Compile Include="Stanford\ProgrammingAssignments\KasarajuSccSolver.cs" />
     <Compile Include="Stanford\ProgrammingAssignments\KnapsackSolver.cs" />
     <Compile Include="Stanford\ProgrammingAssignments\MaxWeightIndependentSetSolver.cs" />

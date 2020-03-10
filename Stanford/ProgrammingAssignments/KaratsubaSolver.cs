@@ -22,7 +22,7 @@ namespace Algorithms.Stanford.ProgrammingAssignments
         public string SolveKaratsuba()
         {
 
-            return new KaratsubaMultiplication().MultiplyRecursive(FirstNumber,SecondNumber);
+            return new KaratsubaMultiplication().MultiplyStringRepresentations(FirstNumber,SecondNumber);
         }
     }
 }

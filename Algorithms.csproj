@@ -93,6 +93,7 @@
     <Compile Include="Stanford\ProgrammingAssignments\DijkstraSolver.cs" />
     <Compile Include="Stanford\Graphs\GraphGenerator.cs" />
     <Compile Include="Stanford\ProgrammingAssignments\HuffmanCodesSolver.cs" />
+    <Compile Include="Stanford\ProgrammingAssignments\InversionsSolver.cs" />
     <Compile Include="Stanford\ProgrammingAssignments\KaratsubaSolver.cs" />
     <Compile Include="Stanford\ProgrammingAssignments\KasarajuSccSolver.cs" />
     <Compile Include="Stanford\ProgrammingAssignments\KnapsackSolver.cs" />

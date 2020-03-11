@@ -15,16 +15,18 @@ namespace Algorithms.Stanford.ProgrammingAssignments
         //answer is 17
 
         private readonly int[][] _graphArray;
-        
+
+        private const string Link =
+            "https://d3c33hcgiwev3.cloudfront.net/_f370cd8b4d3482c940e4a57f489a200b_kargerMinCut.txt?Expires=1584057600&Signature=PaPbXRwFK~4clKETryhxqqslaFBv45PdSVGT9ZszATb5XISCYEZt-aq00jljPKHS9X-qiGMTzZOM0LYccEm~WGi-UEucrojaa2doMRL-0b9JgG5Hvz12obXP-CzXW0qvVJguQ35Cte7pK~zPhPDbjIdjaVybMRv~3MDKHIeWcZI_&Key-Pair-Id=APKAJLTNE6QMUY6HBC5A";        
 
         public MinCutSolver(int[][] graphArray)
         {
             _graphArray = graphArray;
         }
 
-        public MinCutSolver(string link)
+        public MinCutSolver()
         {
-            _graphArray = ParseGraphArrayStanfordWebSource(link);
+            _graphArray = ParseGraphArrayStanfordWebSource();
         }
 
         public int FindMinCutByTrialsUnion()
@@ -45,9 +47,9 @@ namespace Algorithms.Stanford.ProgrammingAssignments
             return minCut.FindMinCutKargerStein();
         }
 
-        private int[][] ParseGraphArrayStanfordWebSource(string link)
+        private int[][] ParseGraphArrayStanfordWebSource()
         {
-            var graphStringArray = UtilityMethods.GetParsedStringArrayFromWeb(link, Environment.NewLine);
+            var graphStringArray = UtilityMethods.GetParsedStringArrayFromWeb(Link, Environment.NewLine);
 
             var graphFinalArray = new int[graphStringArray.Length][];
 

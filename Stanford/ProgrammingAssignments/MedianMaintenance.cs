@@ -88,7 +88,7 @@ namespace Algorithms.Stanford.ProgrammingAssignments
 
         private static int[] ParseIntegersFromWeb()
         {
-            const string link = "https://lagunita.stanford.edu/assets/courseware/v1/036a1a01e616390f2554e7e524da9a18/asset-v1:Engineering+Algorithms1+SelfPaced+type@asset+block/Median.txt";
+            const string link = "https://d3c33hcgiwev3.cloudfront.net/_6ec67df2804ff4b58ab21c12edcb21f8_Median.txt?Expires=1584057600&Signature=iq2kwWo6i7w-2ClOog1elVKbel7bH7IQUGI53iLS3lE81qHzaBhrwAbklxzy1-iELA~WRcCce61qHwhQcB31nWSxqomD9MR9Eh4WkVksz0lS-dLah3KoFGxOHenzx5rKEjgUmvqQbNy8THdgnWms78Y2bU7ex3AfHpLsqzMxoWQ_&Key-Pair-Id=APKAJLTNE6QMUY6HBC5A";
 
             return UtilityMethods.GetParsedStringArrayFromWeb(link, Environment.NewLine)
                 .Select(int.Parse)

@@ -17,9 +17,10 @@ namespace Algorithms.Stanford.ProgrammingAssignments
 
         //Your task in this problem is to run the clustering algorithm from lecture on this data set, 
         //where the target number of clusters is set to 4. What is the maximum spacing of a 4-clustering?
+        //answer is 106
 
         private const string Link =
-            "https://lagunita.stanford.edu/assets/courseware/v1/d24f26d8392f2215ee8d8e8945b1cbff/asset-v1:Engineering+Algorithms2+SelfPaced+type@asset+block/clustering1.txt";
+            "https://d3c33hcgiwev3.cloudfront.net/_fe8d0202cd20a808db6a4d5d06be62f4_clustering1.txt?Expires=1584057600&Signature=IaQHQGmXNfCQct7Meu1rIFtk-ojHlao9FRNFaZcxDeqPQq7atUPm2yhY~ImXnNkFQF9aZd-kE-3FkVzKDG7OYLl7S38WaAoVNuratjG7UofAh5YFZog6WeffuwG~G3EcKjEp1f07bWJo1EiaSYTFCafIgEoKgXO2rKwLiY1EqFk_&Key-Pair-Id=APKAJLTNE6QMUY6HBC5A";
 
         private static int _nodeCount;
 
@@ -29,7 +30,7 @@ namespace Algorithms.Stanford.ProgrammingAssignments
             var kruskal = new KruskalsMst();
 
             var clusterization = kruskal.GetMst(graph, _nodeCount);
-            return clusterization[clusterization.Count - 3].Weight;
+            return clusterization[clusterization.Count - k + 1].Weight;
         }
 
         private static List<Edge> ParseWeigthedEdgesFromWeb()

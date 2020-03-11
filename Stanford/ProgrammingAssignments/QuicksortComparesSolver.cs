@@ -18,11 +18,17 @@ namespace Algorithms.Stanford.ProgrammingAssignments
             2. Calculate number of comparisons always choosing last element of array as pivot.
             3. Calculate number of comparisons always choosing median element of array as pivot.
 
-         https://lagunita.stanford.edu/assets/courseware/v1/e4180be5ec3e5b00f55703423698327f/asset-v1:Engineering+Algorithms1+SelfPaced+type@asset+block/QuickSort.txt */
+            answers are:  Compares first: 162085
+                        Compares last: 164123
+                        Compares median: 138382
+        */
 
-        public static void Solve(string linkToArray)
+        private const string Link =
+            "https://d3c33hcgiwev3.cloudfront.net/_32387ba40b36359a38625cbb397eee65_QuickSort.txt?Expires=1584057600&Signature=HnkP8c3moPFSnn58xmxT-BwP3qpwz-4OfIBj4rjNUxk23PJWA5GV7IMN-1xnWYii4K6xLoIRHheUAixPGQvOZM-oAKQgJkLruEk3D-NBtr4tepZv8Uqu4rpTuglYLiUizYZxnUYr3gx70SdkuqandFwniasQRerPm7aKNrP6QVE_&Key-Pair-Id=APKAJLTNE6QMUY6HBC5A";
+        
+        public static void Solve()
         {
-            var webArray = GetArrayFromWeb(linkToArray);
+            var webArray = GetArrayFromWeb(Link);
             var arrayForLast = (int[])webArray.Clone();
             var arrayForMedian = (int[])webArray.Clone();
 
@@ -33,7 +39,6 @@ namespace Algorithms.Stanford.ProgrammingAssignments
             Console.WriteLine($"Compares first: {comparesFirst.GetComparisons()}\n" +
                               $"Compares last: {comparesLast.GetComparisons()}\n" +
                               $"Compares median: {comparesMedian.GetComparisons()}");
-            Console.ReadLine();
         }
 
         private static int[] GetArrayFromWeb(string link)

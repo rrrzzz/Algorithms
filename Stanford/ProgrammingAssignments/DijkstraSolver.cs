@@ -24,23 +24,23 @@ namespace Algorithms.Stanford.ProgrammingAssignments
 
         private readonly int[] _requiredPaths = {7, 37, 59, 82, 99, 115, 133, 165, 188, 197};
 
-        // public string Solve()
-        // {
-        //     var graph = ParseWeightedGraphFromWeb();
-        //
-        //     var t = new Stopwatch();
-        //     t.Start();
-        //     var pathsArray = new DijkstraShortestPath().GetShortestPaths(graph, 1);
-        //     
-        //     var answerArray = _requiredPaths.Select(x => pathsArray[x]).ToArray();
-        //
-        //     return string.Join(", ", answerArray);
-        // }
+        public string Solve()
+        {
+            var graph = ParseWeightedGraphFromWeb();
+        
+            var t = new Stopwatch();
+            t.Start();
+            var pathsArray = new DijkstraShortestPath().GetShortestPaths(graph, 1);
+            
+            var answerArray = _requiredPaths.Select(x => pathsArray[x]).ToArray();
+        
+            return string.Join(", ", answerArray);
+        }
 
         private Dictionary<int, NodeWeighted> ParseWeightedGraphFromWeb()
         {
             const string link =
-                "https://lagunita.stanford.edu/assets/courseware/v1/c8748131579ef6bd10b2d46f616988e9/asset-v1:Engineering+Algorithms1+SelfPaced+type@asset+block/dijkstraData.txt";
+                "https://d3c33hcgiwev3.cloudfront.net/_dcf1d02570e57d23ab526b1e33ba6f12_dijkstraData.txt?Expires=1584057600&Signature=LBoSQQ2DyBfZIsLrEZSR3CqqpJO4qROYj~YsP2k6L4VEbdRVTLJ~Tn9Rq9E7L1Bmj1oT8beGg9zJ2KBBjld8I93S~7EKkiFpoTV8KXXNbKGeZTYgP5ty~uDDa5BVUxGmWQe~6Zy2GX7ZUo5cUu8A9ncrVGT90Y8EdK~P6S264tM_&Key-Pair-Id=APKAJLTNE6QMUY6HBC5A";
             var nodes = new Dictionary<int, NodeWeighted>();
 
             var parsed = UtilityMethods.GetParsedStringArrayFromWeb(link, '\n');

@@ -67,7 +67,7 @@ namespace Algorithms.Stanford.ProgrammingAssignments
         private static Dictionary<bool[], int> ParseBinaryNodeGraphFromWeb()
         {
             var output = new Dictionary<bool[], int>(new MyEqualityComparer());
-            var link = "https://lagunita.stanford.edu/assets/courseware/v1/d9dc8f4b1324fa1f18e51376d0f8d6f1/asset-v1:Engineering+Algorithms2+SelfPaced+type@asset+block/clustering_big.txt";
+            var link = "https://d3c33hcgiwev3.cloudfront.net/_fe8d0202cd20a808db6a4d5d06be62f4_clustering_big.txt?Expires=1584057600&Signature=eyuaYbWWTP2COvlPgokt-PH~pxWtix2QXUAZeKsxy3fKq9NurEk5fo6lDkiCtf9intOz3F1MOMiDSsx3bSrBkyJxeoV0oBZXP4xl5kfFAuQyBCAheFlfHaOLvfELhn124VOmwVTOgqqtrhLx90UxUaE3WIJpEqcgI-nLrZ-1dFg_&Key-Pair-Id=APKAJLTNE6QMUY6HBC5A";
 
             var stringParsed = UtilityMethods.GetParsedStringArrayFromWeb(link, '\n');
 

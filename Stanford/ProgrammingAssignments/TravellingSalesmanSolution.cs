@@ -14,7 +14,7 @@ namespace Algorithms.Stanford.ProgrammingAssignments
         //answer is 26442
  
         private const string Link =
-            "https://lagunita.stanford.edu/assets/courseware/v1/0557f47943b80364030343bfd38d0c72/asset-v1:Engineering+Algorithms2+SelfPaced+type@asset+block/tsp.txt";
+            "https://d3c33hcgiwev3.cloudfront.net/_f702b2a7b43c0d64707f7ab1b4394754_tsp.txt?Expires=1584057600&Signature=Neba2-uXMeeo~nGtTMV9YITlGpfH9XBbb-KALljSirI04TmZHSuTrWmE2o8g6fXEvHvnk0kO6vl337cTzZUCMYRxhbKN2kB9emyer3iw66EhhVUdKyEJ-l~pu9f61-GViqPrmcluQUfExiFD86z0IWZYkcKlma2j2Zet81SpGpc_&Key-Pair-Id=APKAJLTNE6QMUY6HBC5A";
 
         private readonly double[]  _xs =
         {

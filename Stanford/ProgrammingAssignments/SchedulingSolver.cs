@@ -39,7 +39,7 @@ namespace Algorithms.Stanford.ProgrammingAssignments
 		
 		private static Job[] ParseJobsArrayFromWeb()
 		{
-			const string link = @"https://lagunita.stanford.edu/assets/courseware/v1/85f7268f796f7014abab35a19999783c/asset-v1:Engineering+Algorithms2+SelfPaced+type@asset+block/jobs.txt";
+			const string link = @"https://d3c33hcgiwev3.cloudfront.net/_642c2ce8f3abe387bdff636d708cdb26_jobs.txt?Expires=1584057600&Signature=eOOIZwJU9H8PmftG3a5cA2IWk2V-lumA9xKAn4ZOctYKbK8TAQsm6OP44eA2aufn6TptZWlxys9bj2EY-zxvI2-A-jgaBoArvNETa12EnF23HoCd0uHEC6fN6YWdZGe6ztqGabjY3OUcviHBqEx7D3-MsZAkq0SXdh2n7i~9hr4_&Key-Pair-Id=APKAJLTNE6QMUY6HBC5A";
 
 			var jobsArray = UtilityMethods.GetParsedStringArrayFromWeb(link, '\n');
 			var jobsCount = int.Parse(jobsArray[0]);

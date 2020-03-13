@@ -16,12 +16,12 @@ namespace Algorithms.Stanford.ProgrammingAssignments
         // if you think that the first 3 instances are satisfiable and the last 3 are not, then you should enter the string 111000 in the box below.
         // Answer: 101100
 
-        private const string Link0 = "https://d3c33hcgiwev3.cloudfront.net/_02c1945398be467219866ee1c3294d2d_2sat1.txt?Expires=1584057600&Signature=FOgFxpnXcu-F30MTpu~E2tY0SZ~UlIRnokR5Y1rLHKkKm0HRbTdf2GEy~-0YR1OvSLA9ne4KjS7QU5twYmXTWI3UO~HZRlfdxZARhbJILFs3l4uZ0sTV8w26ZklYJ1A3KG-3jBEe1-kFadwl3IWJmixlVFTHXpjDcUaHzKdE7MY_&Key-Pair-Id=APKAJLTNE6QMUY6HBC5A";
-        private const string Link1 = "https://d3c33hcgiwev3.cloudfront.net/_02c1945398be467219866ee1c3294d2d_2sat2.txt?Expires=1584057600&Signature=SjZAmRglfSaVTajt3d3LLa7ET3ysTKM99lRK9HxzhFpK3OaW5F28t~GG0OzesKP4aYFKN0CwPRd2TMtoklPakaERnRqS5yQ8JAUYWSkk41sLYkX6SjE6XaKXMIEIo063TYIMP8Ro~UbtB-TWnAb3cGzyRAWWPXEFQFWOFubuqyM_&Key-Pair-Id=APKAJLTNE6QMUY6HBC5A";
-        private const string Link2 = "https://d3c33hcgiwev3.cloudfront.net/_02c1945398be467219866ee1c3294d2d_2sat3.txt?Expires=1584057600&Signature=Zt9RwoAPY6jH1oTIHkck82xGSSkdNdXJ5VIarKzxckMvTuIaADOXeOV242BVAacLUxin0ZfAwn93spPHjsCV9syyljx~4911VRNHnaBOLPt49dxkhp2VxrP~HMgte7Bi~YquAaBfPuqGEVoiZrSqhT00Ghd6xRoGdI4rAGVFWsY_&Key-Pair-Id=APKAJLTNE6QMUY6HBC5A";
-        private const string Link3 = "https://d3c33hcgiwev3.cloudfront.net/_02c1945398be467219866ee1c3294d2d_2sat4.txt?Expires=1584057600&Signature=Tjn88gZ-t01rtxpl8HKNQccHSdLe9J-SqN59bSpBzNfEDpZQGAChfNNy4bSp15~PUCBm9SNmKGIL84ob8wOMBV4ChoHM7oDQe1WSjR9C0F8oxmnX4U0jNUw8qUnLOF2pzGjS~OSC6sedEsBMMtq4xT~sZLX1UtDeBF0yfUwQhJA_&Key-Pair-Id=APKAJLTNE6QMUY6HBC5A";
-        private const string Link4 = "https://d3c33hcgiwev3.cloudfront.net/_02c1945398be467219866ee1c3294d2d_2sat5.txt?Expires=1584057600&Signature=fS26dnU1lVgwmCJUrsFfGTr6Sv0AKbC3AU6dqfLE29q1uxpxHIjtv8layDlVy8qU3-pj8Kp6KFAZPM7q5LKjfkmiuuK~Az0r-w-Voe-OrK1sFDUYzVHsAJPTZRY55UWVwX9iMG00g-0MD4mNaDtpmj657~evLm8tmI-~IfSKZdI_&Key-Pair-Id=APKAJLTNE6QMUY6HBC5A";
-        private const string Link5 = "https://d3c33hcgiwev3.cloudfront.net/_02c1945398be467219866ee1c3294d2d_2sat6.txt?Expires=1584057600&Signature=dnReXgG5pvcGGLrPP-ppiQIedqjz2AUpBYfbcarzN1rW3hQezHX3YgOd8KnZKM1r0zKsh3dMXuzjGj8WlJU5376~OyWrhzaO6gKw9yZU~1MDxXqDQFLBglnVJRKrxW6tQXKcJq653q0YwtAxJT8B1eMvpQZtL9mbf-KyKQ64Sb0_&Key-Pair-Id=APKAJLTNE6QMUY6HBC5A";
+        private const string Link0 = "https://lagunita.stanford.edu/assets/courseware/v1/3b06ac260bfdf1f6b9b2c740f64aa767/asset-v1:Engineering+Algorithms2+SelfPaced+type@asset+block/2sat1.txt";
+        private const string Link1 = "https://lagunita.stanford.edu/assets/courseware/v1/00f3826732c3bf38ce375da9b8890b16/asset-v1:Engineering+Algorithms2+SelfPaced+type@asset+block/2sat2.txt";
+        private const string Link2 = "https://lagunita.stanford.edu/assets/courseware/v1/3a99efb07b6d4e79e80b1b7cc4409a47/asset-v1:Engineering+Algorithms2+SelfPaced+type@asset+block/2sat3.txt";
+        private const string Link3 = "https://lagunita.stanford.edu/assets/courseware/v1/c91f372b2e97093f55924c6915854451/asset-v1:Engineering+Algorithms2+SelfPaced+type@asset+block/2sat4.txt";
+        private const string Link4 = "https://s3-us-west-1.amazonaws.com/prod-edx/Algo2/Files/2sat5.txt";
+        private const string Link5 = "https://s3-us-west-1.amazonaws.com/prod-edx/Algo2/Files/2sat6.txt";
 
         private List<string> _links = new List<string>{Link0, Link1, Link2, Link3, Link4, Link5};
 

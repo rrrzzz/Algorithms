@@ -106,7 +106,6 @@
     <Compile Include="Stanford\ProgrammingAssignments\SchedulingSolver.cs" />
     <Compile Include="Stanford\ProgrammingAssignments\Solver2Sum.cs" />
     <Compile Include="Stanford\ProgrammingAssignments\TravellingSalesmanSolution.cs" />
-    <Compile Include="Stanford\ProgrammingAssignments\TspGreedySolver.cs" />
     <Compile Include="Stanford\ProgrammingAssignments\TwoSatSolver.cs" />
     <Compile Include="Stanford\Sorting\OrderStatistics.cs" />
     <Compile Include="Stanford\Sorting\PivotPartition\PivotPartitioner.cs" />

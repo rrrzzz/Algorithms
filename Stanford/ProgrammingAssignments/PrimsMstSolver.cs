@@ -32,7 +32,7 @@ namespace Algorithms.Stanford.ProgrammingAssignments
         private static Dictionary<int, NodeWeighted> ParseMstGraphFromWeb()
         {
             const string link =
-                @"https://d3c33hcgiwev3.cloudfront.net/_d4f3531eac1d289525141e95a2fea52f_edges.txt?Expires=1584057600&Signature=SAKD3aP6yNieA8PkxdIOxSYQRpT~qqaANpqLtmZCP6TK-w~WaRk8PGhIXYGBFlFatZc6mjSS15R0nBWqbMcx0GK6ES7lnBFOlZburDIJak0XC~N7sbKd2pq-ILdYvxi8qNStFpYT9Lsqf8QVFs8nLS4IaaV8dw4-h7raExaFj3c_&Key-Pair-Id=APKAJLTNE6QMUY6HBC5A";
+                @"https://lagunita.stanford.edu/assets/courseware/v1/1f93e6cee93cbcf26ee59e2f801646cd/asset-v1:Engineering+Algorithms2+SelfPaced+type@asset+block/edges.txt";
 
             var graphStringsArray = UtilityMethods.GetParsedStringArrayFromWeb(link, '\n');
             var nodeCount = int.Parse(graphStringsArray[0].Split(' ')[0]);

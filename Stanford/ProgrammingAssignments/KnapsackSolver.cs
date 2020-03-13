@@ -21,10 +21,10 @@ namespace Algorithms.Stanford.ProgrammingAssignments
     public class KnapsackSolver
     {
         const string LargeLink =
-            "https://d3c33hcgiwev3.cloudfront.net/_6dfda29c18c77fd14511ba8964c2e265_knapsack_big.txt?Expires=1584057600&Signature=HXsLYJNrP5dTt8F44PfHbKG0pYBWv-KD5sjEKuVyvor9ftLwWZqfse9wg4yNLMM1ytA1Or5f7X2zM~9-vbtKIQ4hEn3ivMrG0ZTb7LjwUgkh5qnbAbMeaOokFLuXWpTX9Q3pClTZZ9H9YdrLyB~ZTQCzwlbBXTm7tX1POt1mPkA_&Key-Pair-Id=APKAJLTNE6QMUY6HBC5A";
+            "https://lagunita.stanford.edu/assets/courseware/v1/64df53c958263a22ba04e37ce9204a74/asset-v1:Engineering+Algorithms2+SelfPaced+type@asset+block/knapsack_big.txt";
  
         const string SmallLink =
-            "https://d3c33hcgiwev3.cloudfront.net/_6dfda29c18c77fd14511ba8964c2e265_knapsack1.txt?Expires=1584057600&Signature=LLNvWUyfCsv7VZjCk-8Xb92gvsRr9It-QCDjOCiPz6FW9d91pxHcsAFr7TgZI8jrO7IzM88A8Xx7xbmsgIGrO0U4aaJ2XY8Dfb4R-x0nGsmSqfpGTpWVG4H1aOJ77s9KXpI0dK55ZjthEpRYjHvQ3fCI9ZgHRKeOLGcuMo924T8_&Key-Pair-Id=APKAJLTNE6QMUY6HBC5A";
+            "https://lagunita.stanford.edu/assets/courseware/v1/d55a5fe1d0942cf624532f2a2fc133f9/asset-v1:Engineering+Algorithms2+SelfPaced+type@asset+block/knapsack1.txt";
  
         public float SolveSmallKnapsack()
         {

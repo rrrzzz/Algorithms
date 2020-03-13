@@ -20,8 +20,7 @@ namespace Algorithms
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(ClusterizationSolver.GetMaxClusterizationSpacing(4));
-            ;
+            InversionsSolver.Solve();
         }
     }
 }

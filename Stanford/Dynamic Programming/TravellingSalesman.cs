@@ -2,10 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Management.Instrumentation;
 using System.Numerics;
+using System.Text;
 using System.Threading;
+using Algorithms.Stanford.DataStructures;
 using Algorithms.Stanford.Misc;
 
 namespace Algorithms.Stanford.Dynamic_Programming
@@ -26,8 +29,52 @@ namespace Algorithms.Stanford.Dynamic_Programming
          *
          * subsets - dict size:subsets. Subset - hashset? Check equality
          */
+        
         private const int StartIndex = 0;
 
+        public int GetTourGreedy(VectorDouble[] coords)
+        {
+            var pathCost = 0d;
+            var visitedCities = new List<int>{0};
+
+            var unvisitedCities = new HashSet<int>(Enumerable.Range(1,coords.Length - 1));
+
+            var currentCity = 0;
+            
+            while (unvisitedCities.Count != 0)
+            {
+                var min = double.MaxValue;
+                var minIndex = -1;
+
+                var currentCoords = coords[currentCity];
+                foreach (var city in unvisitedCities)
+                {
+                    var d = GetDistanceFast(currentCoords, coords[city]);
+                    if (d < min)
+                    {
+                        min = d;
+                        minIndex = city;
+                    }
+                    else if (Math.Abs(d - min) < 0.001f && city < minIndex) minIndex = city;
+                }
+            
+                currentCity = minIndex;
+                visitedCities.Add(minIndex);
+                unvisitedCities.Remove(minIndex);
+            }
+            
+            for (int i = 0; i < visitedCities.Count-1; i++)
+            {
+                pathCost += GetDistance(coords[visitedCities[i]], coords[visitedCities[i+1]]);
+            }
+
+            var lastCityIndex = visitedCities[visitedCities.Count - 1];
+            
+            pathCost += GetDistance(coords[StartIndex], coords[lastCityIndex]);
+
+            return (int)pathCost;
+        }
+        
         public Tuple<float, int[]> GetTourPathLengthToLastNode(Vector2[] coords)
         {
             var s = CalculateMinPathForAllDestinations(coords);
@@ -120,12 +167,42 @@ namespace Algorithms.Stanford.Dynamic_Programming
 
             return s;
         }
+        
+        public decimal Sqrt(decimal x, decimal epsilon = 0.0M)
+        {
+            if (x < 0) throw new OverflowException("Cannot calculate square root from a negative number");
+
+            decimal current = (decimal)Math.Sqrt((double)x), previous;
+            do
+            {
+                previous = current;
+                if (previous == 0.0M) return 0;
+                current = (previous + x / previous) / 2;
+            }
+            while (Math.Abs(previous - current) > epsilon);
+            return current;
+        }
 
         private float GetDistance(Vector2 s, Vector2 t)
         {
             var x = s.X - t.X;
             var y = s.Y - t.Y;
             return (float) Math.Sqrt(x * x + y * y);
+        }
+        
+        private double GetDistance(VectorDouble s, VectorDouble t)
+        {
+            var x = s.X - t.X;
+            var y = s.Y - t.Y;
+            
+            return Math.Sqrt(x * x + y * y);
+        }
+        
+        private double GetDistanceFast(VectorDouble s, VectorDouble t)
+        {
+            var x = s.X - t.X;
+            var y = s.Y - t.Y;
+            return x * x + y * y;
         }
 
         private List<HashSet<int>>[] GenerateSubsets(int setSize)
